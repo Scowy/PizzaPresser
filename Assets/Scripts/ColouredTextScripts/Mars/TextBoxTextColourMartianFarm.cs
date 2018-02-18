@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class TextBoxTextColourMartianFarm : MonoBehaviour
 {
     public Text textBoxText;
+    public GameObject marsInterface;
     private string colour1;
     private string colour2;
-    private string colour3;
     private string colourEnd;
     private string red;
     private string green;
@@ -17,7 +17,6 @@ public class TextBoxTextColourMartianFarm : MonoBehaviour
     {
         colour1 = "<color=red>";
         colour2 = "<color=red>";
-        colour3 = "<color=red>";
         red = "<color=red>";
         colourEnd = "</color>";
         green = "<color=green>";
@@ -25,13 +24,12 @@ public class TextBoxTextColourMartianFarm : MonoBehaviour
 
     void SetText()
     {
-        textBoxText.text = "Requires: \n" + colour1 + "1 Taskmaster" + colourEnd + "\n" + colour2 + "1 Builder" + colourEnd + "\n" + colour3 + "10 Peons" + colourEnd;
+        textBoxText.text = "Requires: \n" + colour1 + "1 Taskmaster" + colourEnd + "\n" + colour2 + "8 Peons" + colourEnd;
     }
 
     void Update()
     {
-        GameObject marsinterface = GameObject.Find("MarsInterface");
-        MarsController mif = marsinterface.GetComponent<MarsController>();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
 
         SetText();
 
@@ -47,7 +45,7 @@ public class TextBoxTextColourMartianFarm : MonoBehaviour
             colour1 = red;
         }
 
-        if (mif.martianBuilderCount >= 1)
+        if (mif.martianPeonCount >= 8)
         {
             if (colour2 == red)
             {
@@ -57,18 +55,6 @@ public class TextBoxTextColourMartianFarm : MonoBehaviour
         else if (colour2 == green)
         {
             colour2 = red;
-        }
-
-        if (mif.martianPeonCount >= 10)
-        {
-            if (colour3 == red)
-            {
-                colour3 = green;
-            }
-        }
-        else if (colour3 == green)
-        {
-            colour3 = red;
         }
     }
 }

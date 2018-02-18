@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TextBoxTextColourTrainingCamp : MonoBehaviour
 {
     public Text textBoxText;
+    public GameObject marsInterface;
     private string colour1;
     private string colourEnd;
     private string red;
@@ -21,17 +22,16 @@ public class TextBoxTextColourTrainingCamp : MonoBehaviour
 
     void SetText()
     {
-        textBoxText.text = "Requires: \n" + colour1 + "10 Peons" + colourEnd;
+        textBoxText.text = "Requires: \n" + colour1 + "5 Peons" + colourEnd;
     }
 
     void Update()
     {
-        GameObject marsinterface = GameObject.Find("MarsInterface");
-        MarsController mif = marsinterface.GetComponent<MarsController>();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
 
         SetText();
 
-        if (mif.martianPeonCount >= 10)
+        if (mif.martianPeonCount >= 5)
         {
             if (colour1 == red)
             {

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TextBoxTextColourMartianSatellite : MonoBehaviour
 {
     public Text textBoxText;
+    public GameObject marsInterface;
     private string colour1;
     private string colour2;
     private string colour3;
@@ -29,17 +30,16 @@ public class TextBoxTextColourMartianSatellite : MonoBehaviour
 
     void SetText()
     {
-        textBoxText.text = "Requires: \n" + colour1 + "2 Taskmasters" + colourEnd + "\n" + colour2 + "10 Builders" + colourEnd + "\n" + colour3 + "10 Engineers" + colourEnd + "\n" + colour4 + "15 Scientists" + colourEnd + "\n" + colour5 + "40 Peons" + colourEnd;
+        textBoxText.text = "Requires: \n" + colour1 + "1 Taskmasters" + colourEnd + "\n" + colour2 + "3 Builders" + colourEnd + "\n" + colour3 + "3 Engineers" + colourEnd + "\n" + colour4 + "3 Scientists" + colourEnd + "\n" + colour5 + "5 Peons" + colourEnd;
     }
 
     void Update()
     {
-        GameObject marsinterface = GameObject.Find("MarsInterface");
-        MarsController mif = marsinterface.GetComponent<MarsController>();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
 
         SetText();
 
-        if (mif.martianTaskMasterCount >= 2)
+        if (mif.martianTaskMasterCount >= 1)
         {
             if (colour1 == red)
             {
@@ -51,7 +51,7 @@ public class TextBoxTextColourMartianSatellite : MonoBehaviour
             colour1 = red;
         }
 
-        if (mif.martianBuilderCount >= 10)
+        if (mif.martianBuilderCount >= 3)
         {
             if (colour2 == red)
             {
@@ -63,7 +63,7 @@ public class TextBoxTextColourMartianSatellite : MonoBehaviour
             colour2 = red;
         }
 
-        if (mif.martianEngineerCount >= 10)
+        if (mif.martianEngineerCount >= 3)
         {
             if (colour3 == red)
             {
@@ -75,7 +75,7 @@ public class TextBoxTextColourMartianSatellite : MonoBehaviour
             colour3 = red;
         }
 
-        if (mif.martianScientistCount >= 15)
+        if (mif.martianScientistCount >= 3)
         {
             if (colour4 == red)
             {
@@ -87,7 +87,7 @@ public class TextBoxTextColourMartianSatellite : MonoBehaviour
             colour4 = red;
         }
 
-        if (mif.martianPeonCount >= 40)
+        if (mif.martianPeonCount >= 5)
         {
             if (colour5 == red)
             {

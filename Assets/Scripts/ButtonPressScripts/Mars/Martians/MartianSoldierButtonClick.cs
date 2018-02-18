@@ -5,10 +5,11 @@ using UnityEngine.EventSystems;
 
 public class MartianSoldierButtonClick : MonoBehaviour, IPointerDownHandler
 {
+    public GameObject marsInterface;
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        GameObject marsinterface = GameObject.Find("MarsInterface");
-        MarsController mif = marsinterface.GetComponent<MarsController>();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
         mif.BuyMartianSoldier();
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine.EventSystems;
 
 public class FoodShipmentButtonClick : MonoBehaviour, IPointerDownHandler
 {
+    public GameObject marsInterface;
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        GameObject earthinterface = GameObject.Find("EarthInterface");
-        EarthController eif = earthinterface.GetComponent<EarthController>();
-        eif.SendFoodShipment();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
+        mif.SendFoodShipment();
     }
 }

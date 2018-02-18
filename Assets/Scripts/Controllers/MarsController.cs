@@ -8,6 +8,17 @@ using UnityEngine.SceneManagement;
 
 public class MarsController : MonoBehaviour
 {
+    public GameObject earthInterface;
+    public GameObject resourcesUpgradesPanel;
+    public GameObject questsPanel;
+    public GameObject spaceTravelPanel;
+    public GameObject statsPanel;
+
+    public GameObject resourcesUpgradesInterfaceButton;
+    public GameObject questsInterfaceButton;
+    public GameObject spaceTravelInterfaceButton;
+    public GameObject statsInterfaceButton;
+
     [Header("Experience and food variables")]
     public float experience;
     public Text experienceText;
@@ -17,6 +28,7 @@ public class MarsController : MonoBehaviour
     public float food;
     public Text foodText;
     public float foodPerSecond;
+    public Text foodRequirementText;
     public float rock;
     public Text rockText;
     public float rockPerSecond;
@@ -62,6 +74,7 @@ public class MarsController : MonoBehaviour
     private float martianPowerPlantTotalCost;
     public Text martianPowerPlantCountText;
     public Text martianPowerPlantCostText;
+    public Text martianPowerPlantRockText;
     public GameObject martianPowerPlantButton;
 
     public int martianHospitalCount;
@@ -69,6 +82,7 @@ public class MarsController : MonoBehaviour
     private float martianHospitalTotalCost;
     public Text martianHospitalCountText;
     public Text martianHospitalCostText;
+    public Text martianHospitalRockText;
     public GameObject martianHospitalButton;
 
     public int martianFactoryCount;
@@ -76,6 +90,7 @@ public class MarsController : MonoBehaviour
     private float martianFactoryTotalCost;
     public Text martianFactoryCountText;
     public Text martianFactoryCostText;
+    public Text martianFactoryRockText;
     public GameObject martianFactoryButton;
 
     public int martianSatelliteCount;
@@ -83,6 +98,9 @@ public class MarsController : MonoBehaviour
     private float martianSatelliteTotalCost;
     public Text martianSatelliteCountText;
     public Text martianSatelliteCostText;
+    public Text martianSatelliteRockText;
+    public Text martianSatelliteMetalText;
+    public Text martianSatelliteEnergyText;
     public GameObject martianSatelliteButton;
 
     public int martianResearchFacilityCount;
@@ -90,58 +108,32 @@ public class MarsController : MonoBehaviour
     private float martianResearchFacilityTotalCost;
     public Text martianResearchFacilityCountText;
     public Text martianResearchFacilityCostText;
+    public Text martianResearchFacilityRockText;
+    public Text martianResearchFacilityMetalText;
+    public Text martianResearchFacilityEnergyText;
     public GameObject martianResearchFacilityButton;
-
-    [Header("Spaceship variables")]
-    public int martianSpaceCruiserCount;
-    public int martianSpaceCruiserCost;
-    public Text martianSpaceCruiserCostText;
-    public GameObject martianSpaceCruiserButton;
-
-    public int spaceShipMainFrameCount;
-    public int spaceShipMainFrameCost;
-    public Text spaceShipMainFrameCostText;
-    public GameObject spaceShipMainFrameButton;
-
-    public int spaceShipPowerCoreCount;
-    public int spaceShipPowerCoreCost;
-    public Text spaceShipPowerCoreCostText;
-    public GameObject spaceShipPowerCoreButton;
-
-    public int spaceShipCargoHoldCount;
-    public int spaceShipCargoHoldCost;
-    public Text spaceShipCargoHoldCostText;
-    public GameObject spaceShipCargoHoldButton;
-
-    public int spaceShipLivingQuartersCount;
-    public int spaceShipLivingQuartersCost;
-    public Text spaceShipLivingQuartersCostText;
-    public GameObject spaceShipLivingQuartersButton;
-
-    public int spaceShipDiningAreaCount;
-    public int spaceShipDiningAreaCost;
-    public Text spaceShipDiningAreaCostText;
-    public GameObject spaceShipDiningAreaButton;
-
-    public int spaceShipMedicalBayCount;
-    public int spaceShipMedicalBayCost;
-    public Text spaceShipMedicalBayCostText;
-    public GameObject spaceShipMedicalBayButton;
-
-    public int spaceShipLaboratoryCount;
-    public int spaceShipLaboratoryCost;
-    public Text spaceShipLaboratoryCostText;
-    public GameObject spaceShipLaboratoryButton;
-
-    public int spaceShipShieldGeneratorCount;
-    public int spaceShipShieldGeneratorCost;
-    public Text spaceShipShieldGeneratorCostText;
-    public GameObject spaceShipShieldGeneratorButton;
-
-    public int spaceShipMountedCannonsCount;
-    public int spaceShipMountedCannonsCost;
-    public Text spaceShipMountedCannonsCostText;
-    public GameObject spaceShipMountedCannonsButton;
+    public GameObject martianUpgradePanel;
+    public Slider researchSlider;
+    public Text researchPointsText;
+    public Image sliderFill;
+    private int researchPoints;
+    private int researchMaxPoints;
+    private float researchUpdateTime;
+    public int[] buildlingLevel = { 1, 1, 1, 1, 1, 1, 1 }; 
+    public Button trainingCampUpgradeButton;
+    public Text trainingCampUpgradeCountText;
+    public Button farmUpgradeButton;
+    public Text farmUpgradeCountText;
+    public Button mineUpgradeButton;
+    public Text mineUpgradeCountText;
+    public Button powerStationUpgradeButton;
+    public Text powerStationUpgradeCountText;
+    public Button hostpitalUpgradeButton;
+    public Text hospitalUpgradeCountText;
+    public Button factoryUpgradeButton;
+    public Text factoryUpgradeCountText;
+    public Button satelliteUpgradeButton;
+    public Text satelliteUpgradeCountText;
 
     [Header("Martian variables")]
     public int martianCount;
@@ -196,13 +188,17 @@ public class MarsController : MonoBehaviour
     public GameObject martianScientistButton;
 
     public int martianSoldierCount;
-    public int martiannSoldierCost;
+    public int martianSoldierBaseCost;
+    public float martianSoldierTotalCost;
     public Text martianSoldierCountText;
+    public Text martianSoldierCostText;
     public GameObject martianSoldierButton;
 
     public int martianPilotCount;
-    public int martianPilotCost;
+    public int martianPilotBaseCost;
+    public float martianPilotTotalCost;
     public Text martianPilotCountText;
+    public Text martianPilotCostText;
     public GameObject martianPilotButton;
 
     public int foodShipmentCost;
@@ -212,6 +208,11 @@ public class MarsController : MonoBehaviour
     public int foodBaitCost;
     public Text foodBaitCostText;
     public GameObject foodBaitButton;
+    public GameObject foodBaitStartText;
+
+    [Header("Spaceship Components")]
+    public Button spaceshipConstructionButton;
+    public Button spaceshipCrewButton;
 
     [Header("Stat variables")]
     public float experienceStatCounter;
@@ -231,6 +232,8 @@ public class MarsController : MonoBehaviour
     void Start ()
     {
         huntCount = 1;
+        researchUpdateTime = 1;
+        researchMaxPoints = 10;
 
         UpdateExperiencePerSecond();
         UpdateHuntTime();
@@ -250,6 +253,8 @@ public class MarsController : MonoBehaviour
         UpdateMartianEngineer();
         UpdateMartianDoctor();
         UpdateMartianScientist();
+        UpdateMartianSoldier();
+        UpdateMartianPilot();
 
         SetExperiencePerSecondText();
         SetMartianCountText();
@@ -263,6 +268,7 @@ public class MarsController : MonoBehaviour
         SetMartianPowerPlantText();
         SetMartianSatelliteText();
         SetMartianResearchFactilityText();
+        SetUpgradeText();
 
         SetMartianPeonText();
         SetMartianBuilderText();
@@ -270,6 +276,8 @@ public class MarsController : MonoBehaviour
         SetMartianEngineerText();
         SetMartianDoctorText();
         SetMartianScientistText();
+        SetMartianSoldierText();
+        SetMartianPilotText();
 	}
 	
 	void Update ()
@@ -279,15 +287,36 @@ public class MarsController : MonoBehaviour
         /// </summary>
 
         huntCount -= Time.deltaTime;
+        researchUpdateTime -= Time.deltaTime;
         SetHuntText();
 
         if (huntCount <= 0)
         {
-            martiansFoundValue = Random.Range(0, 3) * martianHunterCount;
+            martiansFoundValue = Mathf.RoundToInt(Random.Range(1, 2) * martianHunterCount * (1 + 0.05f * martianSatelliteCount) * (0.8f + 0.2f * buildlingLevel[6]));
             martianCount += martiansFoundValue;
+            martianStatCounter += martiansFoundValue;
             huntCount = huntTime;
             SetHuntText();
             SetMartianCountText();
+        }
+
+        if (researchUpdateTime <= 0)
+        {
+            if (martianResearchFacilityCount >= 1)
+            {
+                if (researchPoints < researchMaxPoints)
+                {
+                    researchPoints += 1 * martianResearchFacilityCount;
+                    ChangeSliderValue();
+                }
+
+                if (researchPoints > researchMaxPoints)
+                {
+                    researchPoints = researchMaxPoints;
+                    ChangeSliderValue();
+                }
+            }
+            researchUpdateTime = 1;
         }
 
         experience += experiencePerSecond * Time.deltaTime;
@@ -302,6 +331,75 @@ public class MarsController : MonoBehaviour
         SetMetalText();
         SetEnergyText();
         SetMoneyText();
+
+        // This controls the colour for the martian food 
+
+        if (food >= 500)
+        {
+            foodRequirementText.color = new Color(0f, 216f / 255f, 0f);
+        }
+        else
+            foodRequirementText.color = Color.red;
+
+        // This controls the colour of all the cost text of the buildings
+
+        EarthController eif = earthInterface.GetComponent<EarthController>();
+
+        if (eif.money >= 5000)
+        {
+            trainingCampCostText.color = new Color(0f, 216f / 255f, 0f);
+        }
+        else
+            trainingCampCostText.color = Color.red;
+
+        if (eif.money >= 5000)
+        {
+            martianFarmCostText.color = new Color(0f, 216f / 255f, 0f);
+        }
+        else
+            martianFarmCostText.color = Color.red;
+
+        if (eif.money >= 5000)
+        {
+            martianMineCostText.color = new Color(0f, 216f / 255f, 0f);
+        }
+        else
+            martianMineCostText.color = Color.red;
+
+        if (eif.money >= 50000)
+        {
+            martianPowerPlantCostText.color = new Color(0f, 216f / 255f, 0f);
+        }
+        else
+            martianPowerPlantCostText.color = Color.red;
+
+        if (eif.money >= 50000)
+        {
+            martianFactoryCostText.color = new Color(0f, 216f / 255f, 0f);
+        }
+        else
+            martianFactoryCostText.color = Color.red;
+
+        if (eif.money >= 50000)
+        {
+            martianHospitalCostText.color = new Color(0f, 216f / 255f, 0f);
+        }
+        else
+            martianHospitalCostText.color = Color.red;
+
+        if (eif.money >= 500000)
+        {
+            martianSatelliteCostText.color = new Color(0f, 216f / 255f, 0f);
+        }
+        else
+            martianSatelliteCostText.color = Color.red;
+
+        if (eif.money >= 500000)
+        {
+            martianResearchFacilityCostText.color = new Color(0f, 216f / 255f, 0f);
+        }
+        else
+            martianResearchFacilityCostText.color = Color.red;
     }
 
     public void MartianPizzaClick()
@@ -309,37 +407,6 @@ public class MarsController : MonoBehaviour
         experience += 1; //* Mathf.Pow(2, clickMultiplierCount);
         experienceStatCounter += 1;
         SetExperienceText();
-    }
-
-    /// <summary>
-    /// Planet changing commands
-    /// </summary>
-
-    public void LoadEarth()
-    {
-        Scene earth = SceneManager.GetSceneByName("Earth");
-
-        if (earth.isLoaded == true)
-        {
-            SceneManager.SetActiveScene(earth);
-        }
-        else
-        {
-            SceneManager.LoadScene("Earth", LoadSceneMode.Additive);
-        }
-    }
-
-    public void LoadMars()
-    {
-        Scene mars = SceneManager.GetSceneByName("Mars");
-        if (mars.isLoaded == true)
-        {
-            SceneManager.SetActiveScene(mars);
-        }
-        else
-        {
-            SceneManager.LoadScene("Mars", LoadSceneMode.Additive);
-        }
     }
 
     /// <summary>
@@ -426,30 +493,39 @@ public class MarsController : MonoBehaviour
     {
         martianFactoryCountText.text = martianFactoryCount.ToString("f0");
         martianFactoryCostText.text = "£" + martianFactoryTotalCost.ToString("f0");
+        martianFactoryRockText.text = "500";
     }
 
     public void SetMartianPowerPlantText()
     {
         martianPowerPlantCountText.text = martianPowerPlantCount.ToString("f0");
         martianPowerPlantCostText.text = "£" + martianPowerPlantTotalCost.ToString("f0");
+        martianPowerPlantRockText.text = "500";
     }
 
     public void SetMartianHospitalText()
     {
         martianHospitalCountText.text = martianHospitalCount.ToString("f0");
         martianHospitalCostText.text = "£" + martianHospitalTotalCost.ToString("f0");
+        martianHospitalRockText.text = "500";
     }
 
     public void SetMartianSatelliteText()
     {
         martianSatelliteCountText.text = martianSatelliteCount.ToString("f0");
         martianSatelliteCostText.text = "£" + martianSatelliteTotalCost.ToString("f0");
+        martianSatelliteRockText.text = "800";
+        martianSatelliteMetalText.text = "800";
+        martianSatelliteEnergyText.text = "500";
     }
 
     public void SetMartianResearchFactilityText()
     {
         martianResearchFacilityCountText.text = martianResearchFacilityCount.ToString("f0");
         martianResearchFacilityCostText.text = "£" + martianResearchFacilityTotalCost.ToString("f0");
+        martianResearchFacilityRockText.text = "2000";
+        martianResearchFacilityMetalText.text = "2000";
+        martianResearchFacilityEnergyText.text = "2000";
     }
 
     /// <summary>
@@ -495,11 +571,13 @@ public class MarsController : MonoBehaviour
     public void SetMartianSoldierText()
     {
         martianSoldierCountText.text = martianSoldierCount.ToString("f0");
+        martianSoldierCostText.text = martianSoldierTotalCost.ToString("f0") + " XP";
     }
 
     public void SetMartianPilotText()
     {
         martianPilotCountText.text = martianPilotCount.ToString("f0");
+        martianPilotCostText.text = martianPilotTotalCost.ToString("f0") + " XP";
     }
 
     /// <summary>
@@ -522,102 +600,114 @@ public class MarsController : MonoBehaviour
 
     public void UpdateExperiencePerSecond()
     {
-        experiencePerSecond = 0 + 1 * martianHunterCount + 3 * trainingCampCount;
-
         if (martianFactoryCount >= 1)
         {
-            experiencePerSecond = (1 * martianHunterCount *  + 2 * trainingCampCount) * Mathf.Pow(1.05f, martianFactoryCount);
+            experiencePerSecond = (1 * martianHunterCount + 3 * trainingCampCount) * (0.8f + 0.2f * (buildlingLevel[0])) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4])));
+        }
+        else
+        {
+            experiencePerSecond = (1 * martianHunterCount + 3 * trainingCampCount) * (0.8f + 0.2f * (buildlingLevel[0]));
         }
     }
 
     public void UpdateMartianHunter()
     {
-        martianHunterTotalCost = 25 + 25 * martianHunterCount * Mathf.Pow(1.05f, martianHunterCount);
+        martianHunterTotalCost = 25 + 10 * martianHunterCount * Mathf.Pow(1.05f, martianHunterCount);
     }
 
     public void UpdateFoodPerSecond()
     {
-        foodPerSecond = 2 * martianFarmCount;
-
         if (martianFactoryCount >= 1)
         {
-            experiencePerSecond = (5 * martianFarmCount) * Mathf.Pow(1.05f, martianFactoryCount);
+            foodPerSecond = (2 * martianFarmCount) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4]))) * (0.8f + 0.2f * (buildlingLevel[1]));
+        }
+        else
+        {
+            foodPerSecond = (2 * martianFarmCount) * (0.8f + 0.2f * (buildlingLevel[1]));
         }
     }
 
     public void UpdateRockPerSecond()
     {
-        rockPerSecond = 3 * martianMineCount;
+
 
         if (martianFactoryCount >= 1)
         {
-            experiencePerSecond = (5 * martianMineCount) * Mathf.Pow(1.05f, martianFactoryCount);
+            rockPerSecond = (2 * martianMineCount) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4]))) * (0.8f + 0.2f * (buildlingLevel[2]));
+        }
+        else
+        {
+            rockPerSecond = 2 * martianMineCount * (0.8f + 0.2f * (buildlingLevel[2]));
         }
     }
 
     public void UpdateMetalPerSecond()
     {
-        metalPerSecond = 1 * martianMineCount;
-
         if (martianFactoryCount >= 1)
         {
-            experiencePerSecond = (2 * martianMineCount) * Mathf.Pow(1.05f, martianFactoryCount);
+            metalPerSecond = martianMineCount * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4]))) * (0.8f + + 0.2f * (buildlingLevel[2]));
+        }
+        else
+        {
+            metalPerSecond = 1 * martianMineCount * (0.8f + 0.2f * (buildlingLevel[2]));
         }
     }
 
     public void UpdateEnergyPerSecond()
     {
-        energyPerSecond = 2 * martianPowerPlantCount;
-
         if (martianFactoryCount >= 1)
         {
-            experiencePerSecond = (5 * martianPowerPlantCount) * Mathf.Pow(1.05f, martianFactoryCount);
+            energyPerSecond = (2 * martianPowerPlantCount) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4]))) * (0.8f + 0.2f * (buildlingLevel[2]));
+        }
+        else
+        {
+            energyPerSecond = 2 * martianPowerPlantCount * (0.8f + 0.2f * (buildlingLevel[3]));
         }
     }
 
     public void UpdateHuntTime()
     {
-        huntTime = 60f - 0.3f * martianSatelliteCount;
+        huntTime = 60f - 0.2f * martianSatelliteCount * (1 + 0.2f * buildlingLevel[6]);
     }
 
     public void UpdateTrainingCamp()
     {
-        trainingCampTotalCost = trainingCampBaseCost * Mathf.Pow(1.05f, trainingCampCount);
+        trainingCampTotalCost = trainingCampBaseCost;
     }
 
     public void UpdateMartianFarm()
     {
-        martianFarmTotalCost = martianFarmBaseCost * Mathf.Pow(1.05f, martianFarmCount);
+        martianFarmTotalCost = martianFarmBaseCost;
     }
 
     public void UpdateMartianMine()
     {
-        martianMineTotalCost = martianMineBaseCost * Mathf.Pow(1.05f, martianMineCount);
+        martianMineTotalCost = martianMineBaseCost;
     }
 
     public void UpdateMartianFactory()
     {
-        martianFactoryTotalCost = martianFactoryBaseCost * Mathf.Pow(1.05f, martianFactoryCount);
+        martianFactoryTotalCost = martianFactoryBaseCost;
     }
 
     public void UpdateMartianPowerPlant()
     {
-        martianPowerPlantTotalCost = martianPowerPlantBaseCost * Mathf.Pow(1.05f, martianPowerPlantCount);
+        martianPowerPlantTotalCost = martianPowerPlantBaseCost;
     }
 
     public void UpdateMartianHospital()
     {
-        martianHospitalTotalCost = martianHospitalBaseCost * Mathf.Pow(1.05f, martianHospitalCount);
+        martianHospitalTotalCost = martianHospitalBaseCost;
     }
 
     public void UpdateMartianSatellite()
     {
-        martianSatelliteTotalCost = martianSatelliteBaseCost * Mathf.Pow(1.05f, martianSatelliteCount);     
+        martianSatelliteTotalCost = martianSatelliteBaseCost;     
     }
 
     public void UpdateMartianResearchFacility()
     {
-        martianResearchFacilityTotalCost = martianResearchFacilityBaseCost * Mathf.Pow(1.05f, martianResearchFacilityCount);
+        martianResearchFacilityTotalCost = martianResearchFacilityBaseCost;
     }
 
     /// <summary>
@@ -626,32 +716,98 @@ public class MarsController : MonoBehaviour
 
     public void UpdateMartianPeon()
     {
-        martianPeonTotalCost = martianPeonBaseCost * Mathf.Pow(1.05f, martianPeonCount);
+        martianPeonTotalCost = martianPeonBaseCost * Mathf.Pow(1.01f, martianPeonCounter);
     }
 
     public void UpdateMartianBuilder()
     {
-        martianBuilderTotalCost = martianBuilderBaseCost * Mathf.Pow(1.05f, martianBuilderCount);
+        martianBuilderTotalCost = martianBuilderBaseCost * Mathf.Pow(1.02f, martianBuilderCounter);
     }
 
     public void UpdateMartianTaskMaster()
     {
-        martianTaskMasterTotalCost = martianTaskMasterBaseCost * Mathf.Pow(1.05f, martianTaskMasterCount);
+        martianTaskMasterTotalCost = martianTaskMasterBaseCost * Mathf.Pow(1.02f, martianTaskMasterCounter);
     }
 
     public void UpdateMartianEngineer()
     {
-        martianEngineerTotalCost = martianEngineerBaseCost * Mathf.Pow(1.05f, martianEngineerCount);
+        martianEngineerTotalCost = martianEngineerBaseCost * Mathf.Pow(1.02f, martianEngineerCounter);
     }
 
     public void UpdateMartianDoctor()
     {
-        martianDoctorTotalCost = martianDoctorBaseCost * Mathf.Pow(1.05f, martianDoctorCount);
+        martianDoctorTotalCost = martianDoctorBaseCost * Mathf.Pow(1.02f, martianDoctorCounter);
     }
 
     public void UpdateMartianScientist()
     {
-        martianScientistTotalCost = martianScientistBaseCost * Mathf.Pow(1.05f, martianScientistCount);
+        martianScientistTotalCost = martianScientistBaseCost * Mathf.Pow(1.02f, martianScientistCounter);
+    }
+
+    public void UpdateMartianSoldier()
+    {
+        martianSoldierTotalCost = martianSoldierBaseCost * Mathf.Pow(1.02f, martianSoldierCounter);
+    }
+
+    public void UpdateMartianPilot()
+    {
+        martianPilotTotalCost = martianPilotBaseCost * Mathf.Pow(1.02f, martianPilotCounter);
+    }
+
+    ///<summary>
+    /// Control of the interface panels
+    /// </summary>
+
+    public void ResourcesInterfaceActivate()
+    {
+        resourcesUpgradesPanel.SetActive(true);
+        questsPanel.SetActive(false);
+        spaceTravelPanel.SetActive(false);
+        statsPanel.SetActive(false);
+
+        resourcesUpgradesInterfaceButton.GetComponent<Image>().color = Color.green;
+        questsInterfaceButton.GetComponent<Image>().color = Color.white;
+        spaceTravelInterfaceButton.GetComponent<Image>().color = Color.white;
+        statsInterfaceButton.GetComponent<Image>().color = Color.white;
+    }
+
+    public void QuestsInterfaceActivate()
+    {
+        resourcesUpgradesPanel.SetActive(false);
+        questsPanel.SetActive(true);
+        spaceTravelPanel.SetActive(false);
+        statsPanel.SetActive(false);
+
+        resourcesUpgradesInterfaceButton.GetComponent<Image>().color = Color.white;
+        questsInterfaceButton.GetComponent<Image>().color = Color.green;
+        spaceTravelInterfaceButton.GetComponent<Image>().color = Color.white;
+        statsInterfaceButton.GetComponent<Image>().color = Color.white;
+    }
+
+    public void SpaceTravelInterfaceActivate()
+    {
+        resourcesUpgradesPanel.SetActive(false);
+        questsPanel.SetActive(false);
+        spaceTravelPanel.SetActive(true);
+        statsPanel.SetActive(false);
+
+        resourcesUpgradesInterfaceButton.GetComponent<Image>().color = Color.white;
+        questsInterfaceButton.GetComponent<Image>().color = Color.white;
+        spaceTravelInterfaceButton.GetComponent<Image>().color = Color.green;
+        statsInterfaceButton.GetComponent<Image>().color = Color.white;
+    }
+
+    public void StatsInterfaceActivate()
+    {
+        resourcesUpgradesPanel.SetActive(false);
+        questsPanel.SetActive(false);
+        spaceTravelPanel.SetActive(false);
+        statsPanel.SetActive(true);
+
+        resourcesUpgradesInterfaceButton.GetComponent<Image>().color = Color.white;
+        questsInterfaceButton.GetComponent<Image>().color = Color.white;
+        spaceTravelInterfaceButton.GetComponent<Image>().color = Color.white;
+        statsInterfaceButton.GetComponent<Image>().color = Color.green;
     }
 
     /// <summary>
@@ -663,31 +819,27 @@ public class MarsController : MonoBehaviour
         GameObject earthinterface = GameObject.Find("EarthInterface");
         EarthController eif = earthinterface.GetComponent<EarthController>();
 
-        if (eif.money >= 5000 && martianPeonCount >= 10)
+        if (eif.money >= 5000 && martianPeonCount >= 5)
         {
             trainingCampCount += 1;
             eif.money -= 5000;
-            martianPeonCount -= 10;
+            martianPeonCount -= 5;
 
             if (trainingCampCount == 1)
             {
-                martianFactoryButton.SetActive(true);
-                martianPowerPlantButton.SetActive(true);
-                martianHospitalButton.SetActive(true);
                 martianTaskMasterButton.SetActive(true);
                 martianBuilderButton.SetActive(true);
-                martianEngineerButton.SetActive(true);
-                martianDoctorButton.SetActive(true);
-                martianScientistButton.SetActive(true);
+                martianFarmButton.SetActive(true);
+                martianMineButton.SetActive(true);
             }
 
             if (martianHospitalCount >= 1)
             {
-                int martianRestoreChance = Mathf.RoundToInt((Random.value + 0.01f * martianHospitalCount) * 4f);
+                int martianRestoreChance = Mathf.RoundToInt(Random.value * 0.05f * 5 * (1 + martianHospitalCount * 0.1f) + 1);
                 
-                if (martianRestoreChance >= 10)
+                if (martianRestoreChance >= 5)
                 {
-                    martianRestoreChance = 10;
+                    martianRestoreChance = 5;
                 }
                 martianPeonCount += martianRestoreChance;
             }
@@ -709,32 +861,42 @@ public class MarsController : MonoBehaviour
         GameObject earthinterface = GameObject.Find("EarthInterface");
         EarthController eif = earthinterface.GetComponent<EarthController>();
 
-        if (eif.money >= 5000 && martianTaskMasterCount >= 1 && martianBuilderCount >= 1 && martianPeonCount >= 10)
+        if (eif.money >= 5000 && martianTaskMasterCount >= 1 && martianPeonCount >= 8)
         {
             martianFarmCount += 1;
             eif.money -= 5000;
-            martianPeonCount -= 10;
-            martianBuilderCount -= 1;
+            martianPeonCount -= 8;
             martianTaskMasterCount -= 1;
 
-            if (trainingCampCount == 1 && martianFarmCount == 1 && martianMineCount == 1)
+            if (trainingCampCount >= 1 && martianFarmCount >= 1 && martianMineCount >= 1)
             {
                 martianFactoryButton.SetActive(true);
                 martianPowerPlantButton.SetActive(true);
                 martianHospitalButton.SetActive(true);
                 martianEngineerButton.SetActive(true);
                 martianDoctorButton.SetActive(true);
+                martianScientistButton.SetActive(true);
             }
 
             if (martianHospitalCount >= 1)
             {
-                int martianRestoreChance = Mathf.RoundToInt((Random.value + 0.01f * martianHospitalCount) * 4f);
+                int martianRestoreChance = Mathf.RoundToInt(Random.value * 0.05f * 8 * (1 + martianHospitalCount * 0.1f) + 1);
 
-                if (martianRestoreChance >= 10)
+                if (martianRestoreChance >= 8)
                 {
-                    martianRestoreChance = 10;
+                    martianPeonCount += 8;
+                    martianRestoreChance -= 8;
+
+                    if (martianRestoreChance >= 1)
+                    {
+                        martianTaskMasterCount += 1;
+                    }
                 }
-                martianPeonCount += martianRestoreChance;
+                else
+                {
+                    martianPeonCount += martianRestoreChance;
+                }
+
             }
 
             UpdateFoodPerSecond();
@@ -754,32 +916,42 @@ public class MarsController : MonoBehaviour
         GameObject earthinterface = GameObject.Find("EarthInterface");
         EarthController eif = earthinterface.GetComponent<EarthController>();
 
-        if (eif.money >= 5000 && martianTaskMasterCount >= 1 && martianBuilderCount >= 5 && martianPeonCount >= 10)
+        if (eif.money >= 5000 && martianTaskMasterCount >= 1 && martianBuilderCount >= 5)
         {
             martianMineCount += 1;
             eif.money -= 5000;
-            martianPeonCount -= 10;
             martianBuilderCount -= 5;
             martianTaskMasterCount -= 1;
 
-            if (trainingCampCount == 1 && martianFarmCount == 1 && martianMineCount == 1)
+            if (trainingCampCount >= 1 && martianFarmCount >= 1 && martianMineCount >= 1)
             {
                 martianFactoryButton.SetActive(true);
                 martianPowerPlantButton.SetActive(true);
                 martianHospitalButton.SetActive(true);
                 martianEngineerButton.SetActive(true);
                 martianDoctorButton.SetActive(true);
+                martianScientistButton.SetActive(true);
             }
 
             if (martianHospitalCount >= 1)
             {
-                int martianRestoreChance = Mathf.RoundToInt((Random.value + 0.01f * martianHospitalCount) * 4f);
+                int martianRestoreChance = Mathf.RoundToInt(Random.value * 0.05f * 4 * (1 + martianHospitalCount * 0.1f) + 1);
 
-                if (martianRestoreChance >= 10)
+
+                if (martianRestoreChance >= 5)
                 {
-                    martianRestoreChance = 10;
+                    martianBuilderCount += 5;
+                    martianRestoreChance -= 5;
+
+                        if (martianRestoreChance >= 1)
+                        {
+                            martianTaskMasterCount += 1;
+                        }
                 }
-                martianPeonCount += martianRestoreChance;
+                else
+                {
+                    martianBuilderCount += martianRestoreChance;
+                }
             }
 
             UpdateRockPerSecond();
@@ -801,16 +973,17 @@ public class MarsController : MonoBehaviour
         GameObject earthinterface = GameObject.Find("EarthInterface");
         EarthController eif = earthinterface.GetComponent<EarthController>();
 
-        if (eif.money >= 50000 && martianTaskMasterCount >= 3 &&  martianBuilderCount >= 10 && martianEngineerCount >= 15 &&  martianPeonCount >= 30)
+        if (eif.money >= 50000 && martianTaskMasterCount >= 1 &&  martianBuilderCount >= 3 && martianEngineerCount >= 3 &&  martianPeonCount >= 5 && rock >= 500)
         {
             martianFactoryCount += 1;
             eif.money -= 50000;
-            martianPeonCount -= 30;
-            martianEngineerCount -= 15;
-            martianBuilderCount -= 10;
-            martianTaskMasterCount -= 3;
+            rock -= 500;
+            martianPeonCount -= 5;
+            martianEngineerCount -= 3;
+            martianBuilderCount -= 3;
+            martianTaskMasterCount -= 1;
 
-            if (martianFactoryCount == 1 && martianPowerPlantCount == 1 && martianHospitalCount == 1)
+            if (martianFactoryCount >= 1 && martianPowerPlantCount >= 1 && martianHospitalCount >= 1)
             {
                 martianSatelliteButton.SetActive(true);
                 martianResearchFacilityButton.SetActive(true);
@@ -819,16 +992,55 @@ public class MarsController : MonoBehaviour
 
             if (martianHospitalCount >= 1)
             {
-                int martianRestoreChance = Mathf.RoundToInt((Random.value + 0.01f * martianHospitalCount) * 10f);
+                int martianRestoreChance = Mathf.RoundToInt(Random.value * 0.05f * 12 * (0.9f + martianHospitalCount * 0.1f) + 1);
 
-                if (martianRestoreChance >= 30)
+                if (martianRestoreChance >= 5)
                 {
-                    martianRestoreChance = 30;
+                    martianPeonCount += 5;
+                    martianRestoreChance -= 5;
+
+                    if (martianRestoreChance >= 3)
+                    {
+                        martianBuilderCount += 3;
+                        martianRestoreChance -= 3;
+
+                        if (martianRestoreChance >= 3)
+                        {
+                            martianEngineerCount += 3;
+                            martianRestoreChance -= 3;
+
+                            if (martianRestoreChance >= 1)
+                            {
+                                martianTaskMasterCount += 1;
+                            }
+                            else
+                            {
+                                martianTaskMasterCount += martianRestoreChance;
+                            }
+                        }
+                        else
+                        {
+                            martianEngineerCount += martianRestoreChance;
+                        }
+                    }
+                    else
+                    {
+                        martianBuilderCount += martianRestoreChance;
+                    }
                 }
-                martianPeonCount += martianRestoreChance;
+                else
+                {
+                    martianPeonCount += martianRestoreChance;
+                }
             }
 
             UpdateMartianFactory();
+            UpdateExperiencePerSecond();
+            SetExperiencePerSecondText();
+            UpdateFoodPerSecond();
+            UpdateRockPerSecond();
+            UpdateMetalPerSecond();
+            UpdateEnergyPerSecond();
 
             SetMartianFactoryText();
             SetMoneyText();
@@ -844,16 +1056,17 @@ public class MarsController : MonoBehaviour
         GameObject earthinterface = GameObject.Find("EarthInterface");
         EarthController eif = earthinterface.GetComponent<EarthController>();
 
-        if (eif.money >= 50000 && martianTaskMasterCount >= 3 && martianEngineerCount >= 5 && martianBuilderCount >= 10 &&  martianPeonCount >= 30)
+        if (eif.money >= 50000 && martianTaskMasterCount >= 1 && martianEngineerCount >= 3 && martianBuilderCount >= 3 && martianPeonCount >= 5 && rock >= 500)
         {
             martianPowerPlantCount += 1;
             eif.money -= 50000;
-            martianPeonCount -= 30;
-            martianBuilderCount -= 10;
-            martianEngineerCount -= 5;
-            martianTaskMasterCount -= 3;
+            rock -= 500;
+            martianPeonCount -= 5;
+            martianBuilderCount -= 3;
+            martianEngineerCount -= 3;
+            martianTaskMasterCount -= 1;
 
-            if (martianFactoryCount == 1 && martianPowerPlantCount == 1 && martianHospitalCount == 1)
+            if (martianFactoryCount >= 1 && martianPowerPlantCount >= 1 && martianHospitalCount >= 1)
             {
                 martianSatelliteButton.SetActive(true);
                 martianResearchFacilityButton.SetActive(true);
@@ -862,13 +1075,42 @@ public class MarsController : MonoBehaviour
 
             if (martianHospitalCount >= 1)
             {
-                int martianRestoreChance = Mathf.RoundToInt((Random.value + 0.01f * martianHospitalCount) * 10f);
+                int martianRestoreChance = Mathf.RoundToInt(Random.value * 0.05f * 12 * (0.9f + martianHospitalCount * 0.1f) + 1);
 
-                if (martianRestoreChance >= 30)
+                if (martianRestoreChance >= 5)
                 {
-                    martianRestoreChance = 30;
+                    martianPeonCount += 5;
+                    martianRestoreChance -= 5;
+
+                    if (martianRestoreChance >= 3)
+                    {
+                        martianBuilderCount += 3;
+                        martianRestoreChance -= 3;
+
+                        if (martianRestoreChance >= 3)
+                        {
+                            martianEngineerCount += 3;
+                            martianRestoreChance -= 3;
+
+                            if (martianRestoreChance >= 1)
+                            {
+                                martianTaskMasterCount += 1;
+                            }
+                        }
+                        else
+                        {
+                            martianEngineerCount += martianRestoreChance;
+                        }
+                    }
+                    else
+                    {
+                        martianBuilderCount += martianRestoreChance;
+                    }
                 }
-                martianPeonCount += martianRestoreChance;
+                else
+                {
+                    martianPeonCount += martianRestoreChance;
+                }
             }
 
             UpdateEnergyPerSecond();
@@ -888,16 +1130,17 @@ public class MarsController : MonoBehaviour
         GameObject earthinterface = GameObject.Find("EarthInterface");
         EarthController eif = earthinterface.GetComponent<EarthController>();
 
-        if (eif.money >= 50000 && martianTaskMasterCount >= 1 && martianBuilderCount >= 5 && martianDoctorCount >= 10 &&  martianPeonCount >= 30)
+        if (eif.money >= 50000 && martianTaskMasterCount >= 1 && martianBuilderCount >= 3 && martianDoctorCount >= 3 &&  martianPeonCount >= 5 && rock >= 500)
         {
             martianHospitalCount += 1;
             eif.money -= 50000;
-            martianPeonCount -= 30;
-            martianDoctorCount -= 10;
-            martianBuilderCount -= 5;
+            rock -= 500;
+            martianPeonCount -= 5;
+            martianDoctorCount -= 3;
+            martianBuilderCount -= 3;
             martianTaskMasterCount -= 1;
 
-            if (martianFactoryCount == 1 && martianPowerPlantCount == 1 && martianHospitalCount == 1)
+            if (martianFactoryCount >= 1 && martianPowerPlantCount >= 1 && martianHospitalCount >= 1)
             {
                 martianSatelliteButton.SetActive(true);
                 martianResearchFacilityButton.SetActive(true);
@@ -906,13 +1149,46 @@ public class MarsController : MonoBehaviour
 
             if (martianHospitalCount >= 1)
             {
-                int martianRestoreChance = Mathf.RoundToInt((Random.value + 0.01f * martianHospitalCount) * 10f);
+                int martianRestoreChance = Mathf.RoundToInt(Random.value * 0.05f * 12 * (0.9f + martianHospitalCount * 0.1f) + 1);
 
-                if (martianRestoreChance >= 30)
+                if (martianRestoreChance >= 5)
                 {
-                    martianRestoreChance = 30;
+                    martianPeonCount += 5;
+                    martianRestoreChance -= 5;
+
+                    if (martianRestoreChance >= 3)
+                    {
+                        martianBuilderCount += 3;
+                        martianRestoreChance -= 3;
+
+                        if (martianRestoreChance >= 3)
+                        {
+                            martianDoctorCount += 3;
+                            martianRestoreChance -= 3;
+
+                            if (martianRestoreChance >= 1)
+                            {
+                                martianTaskMasterCount += 1;
+                            }
+                            else
+                            {
+                                martianTaskMasterCount += martianRestoreChance;
+                            }
+                        }
+                        else
+                        {
+                            martianEngineerCount += martianRestoreChance;
+                        }
+                    }
+                    else
+                    {
+                        martianBuilderCount += martianRestoreChance;
+                    }
                 }
-                martianPeonCount += martianRestoreChance;
+                else
+                {
+                    martianPeonCount += martianRestoreChance;
+                }
             }
 
             UpdateMartianHospital();
@@ -931,30 +1207,75 @@ public class MarsController : MonoBehaviour
         GameObject earthinterface = GameObject.Find("EarthInterface");
         EarthController eif = earthinterface.GetComponent<EarthController>();
 
-        if (eif.money >= 500000 && martianTaskMasterCount >= 2 && martianBuilderCount >= 10 && martianEngineerCount >= 10 && martianScientistCount >= 15 && martianPeonCount >= 40)
+        if (eif.money >= 500000 && martianTaskMasterCount >= 1 && martianBuilderCount >= 3 && martianEngineerCount >= 3 && martianScientistCount >= 3 && martianPeonCount >= 5 && rock >= 800 && metal >= 800 && energy >= 500)
         {
             martianSatelliteCount += 1;
             eif.money -= 50000;
-            martianPeonCount -= 40;
-            martianScientistCount -= 15;
-            martianEngineerCount -= 10;
-            martianBuilderCount -= 10;
-            martianTaskMasterCount -= 2;
+            rock -= 800;
+            metal -= 800;
+            energy -= 500;
+            martianPeonCount -= 5;
+            martianScientistCount -= 3;
+            martianEngineerCount -= 3;
+            martianBuilderCount -= 3;
+            martianTaskMasterCount -= 1;
 
-            if (martianSatelliteCount == 1 && martianResearchFacilityCount == 1)
+            if (martianSatelliteCount >= 1 && martianResearchFacilityCount >= 1)
             {
-
+                martianSoldierButton.SetActive(true);
+                martianPilotButton.SetActive(true);
+                spaceshipConstructionButton.interactable = true;
+                spaceshipCrewButton.interactable = true;
             }
 
             if (martianHospitalCount >= 1)
             {
-                int martianRestoreChance = Mathf.RoundToInt((Random.value + 0.01f * martianHospitalCount) * 20f);
+                int martianRestoreChance = Mathf.RoundToInt(Random.value * 0.05f * 18 * (0.9f + martianHospitalCount * 0.1f) + 1);
 
-                if (martianRestoreChance >= 40)
+                if (martianRestoreChance >= 5)
                 {
-                    martianRestoreChance = 40;
+                    martianPeonCount += 5;
+                    martianRestoreChance -= 5;
+
+                    if (martianRestoreChance >= 3)
+                    {
+                        martianBuilderCount += 3;
+                        martianRestoreChance -= 3;
+
+                        if (martianRestoreChance >= 3)
+                        {
+                            martianEngineerCount += 3;
+                            martianRestoreChance -= 3;
+
+                            if (martianRestoreChance >= 3)
+                            {
+                                martianScientistCount += 3;
+                                martianRestoreChance -= 3;
+
+                                if (martianRestoreChance >= 1)
+                                {
+                                    martianTaskMasterCount += 1;
+                                }
+                            }
+                            else
+                            {
+                                martianScientistCount += martianRestoreChance;
+                            }
+                        }
+                        else
+                        {
+                            martianEngineerCount += martianRestoreChance;
+                        }
+                    }
+                    else
+                    {
+                        martianBuilderCount += martianRestoreChance;
+                    }
                 }
-                martianPeonCount += martianRestoreChance;
+                else
+                {
+                    martianPeonCount += martianRestoreChance;
+                }
             }
 
             UpdateMartianSatellite();
@@ -977,30 +1298,87 @@ public class MarsController : MonoBehaviour
         GameObject earthinterface = GameObject.Find("EarthInterface");
         EarthController eif = earthinterface.GetComponent<EarthController>();
 
-        if (eif.money >= 500000 && martianTaskMasterCount >= 2 && martianBuilderCount >= 10 && martianEngineerCount >= 20 && martianScientistCount >= 20 && martianPeonCount >= 50)
+        if (eif.money >= 500000 && martianTaskMasterCount >= 1 && martianBuilderCount >= 10 && martianEngineerCount >= 10 && martianScientistCount >= 10 && martianPeonCount >= 10 && martianDoctorCount >= 10 && rock >= 2000 && metal >= 2000 && energy >= 2000)
         {
             martianResearchFacilityCount += 1;
+            martianUpgradePanel.SetActive(true);
             eif.money -= 50000;
-            martianPeonCount -= 50;
-            martianScientistCount -= 20;
-            martianEngineerCount -= 20;
+            rock -= 2000;
+            metal -= 2000;
+            energy -= 2000;
+            martianPeonCount -= 10;
+            martianScientistCount -= 10;
+            martianEngineerCount -= 10;
             martianBuilderCount -= 10;
-            martianTaskMasterCount -= 2;
+            martianDoctorCount -= 10;
+            martianTaskMasterCount -= 1;
 
-            if (martianSatelliteCount == 1 && martianResearchFacilityCount == 1)
+            if (martianSatelliteCount >= 1 && martianResearchFacilityCount >= 1)
             {
-
+                martianSoldierButton.SetActive(true);
+                martianPilotButton.SetActive(true);
+                spaceshipConstructionButton.interactable = true;
+                spaceshipCrewButton.interactable = true;
             }
 
             if (martianHospitalCount >= 1)
             {
-                int martianRestoreChance = Mathf.RoundToInt((Random.value + 0.01f * martianHospitalCount) * 20f);
+                int martianRestoreChance = Mathf.RoundToInt(Random.value * 0.05f * 51 * (0.9f + martianHospitalCount * 0.1f) + 1);
 
-                if (martianRestoreChance >= 50)
+                if (martianRestoreChance >= 10)
                 {
-                    martianRestoreChance = 50;
+                    martianPeonCount += 10;
+                    martianRestoreChance -= 10;
+
+                    if (martianRestoreChance >= 10)
+                    {
+                        martianBuilderCount += 10;
+                        martianRestoreChance -= 10;
+
+                        if (martianRestoreChance >= 10)
+                        {
+                            martianEngineerCount += 10;
+                            martianRestoreChance -= 10;
+
+                            if (martianRestoreChance >= 10)
+                            {
+                                martianScientistCount += 10;
+                                martianRestoreChance -= 10;
+
+                                if (martianRestoreChance >= 10)
+                                {
+                                    martianDoctorCount += 10;
+                                    martianRestoreChance -= 10;
+
+                                    if (martianRestoreChance >= 1)
+                                    {
+                                        martianTaskMasterCount += 1;
+                                    }
+                                }
+                                else
+                                {
+                                    martianDoctorCount += martianRestoreChance;
+                                }
+                            }
+                            else
+                            {
+                                martianScientistCount += martianRestoreChance;
+                            }
+                        }
+                        else
+                        {
+                            martianEngineerCount += martianRestoreChance;
+                        }
+                    }
+                    else
+                    {
+                        martianBuilderCount += martianRestoreChance;
+                    }
                 }
-                martianPeonCount += martianRestoreChance;
+                else
+                {
+                    martianPeonCount += martianRestoreChance;
+                }
             }
 
             UpdateMartianResearchFacility();
@@ -1025,6 +1403,7 @@ public class MarsController : MonoBehaviour
        if(experience >= martianPeonTotalCost && food >= 500 && martianCount >= 1)
         {
             martianPeonCount += 1;
+            martianPeonCounter += 1;
             experience -= martianPeonTotalCost;
             food -= 500;
             martianCount -= 1;
@@ -1048,10 +1427,16 @@ public class MarsController : MonoBehaviour
             food -= 500;
             martianCount -= 1;
 
+            if (martianHunterCount == 1)
+            {
+                foodBaitStartText.SetActive(false);
+            }
+
             UpdateMartianHunter();
 
             SetMartianHunterText();
             SetMartianCountText();
+            SetExperiencePerSecondText();
             SetMoneyText();
             SetFoodText();
         }
@@ -1062,6 +1447,7 @@ public class MarsController : MonoBehaviour
         if (experience >= martianBuilderTotalCost && food >= 500 && martianCount >= 1)
         {
             martianBuilderCount += 1;
+            martianBuilderCounter += 1;
             experience -= martianBuilderTotalCost;
             food -= 500;
             martianCount -= 1;
@@ -1080,6 +1466,7 @@ public class MarsController : MonoBehaviour
         if (experience >= martianTaskMasterTotalCost && food >= 500 && martianCount >= 1)
         {
             martianTaskMasterCount += 1;
+            martianTaskMasterCounter += 1;
             experience -= martianTaskMasterTotalCost;
             food -= 500;
             martianCount -= 1;
@@ -1098,6 +1485,7 @@ public class MarsController : MonoBehaviour
         if (experience >= martianEngineerTotalCost && food >= 500 && martianCount >= 1)
         {
             martianEngineerCount += 1;
+            martianEngineerCounter += 1;
             experience -= martianEngineerTotalCost;
             food -= 500;
             martianCount -= 1;
@@ -1116,6 +1504,7 @@ public class MarsController : MonoBehaviour
         if (experience >= martianDoctorTotalCost && food >= 500 && martianCount >= 1)
         {
             martianDoctorCount += 1;
+            martianDoctorCounter += 1;
             experience -= martianDoctorTotalCost;
             food -= 500;
             martianCount -= 1;
@@ -1134,6 +1523,7 @@ public class MarsController : MonoBehaviour
         if (experience >= martianScientistTotalCost && food >= 500 && martianCount >= 1)
         {
             martianScientistCount += 1;
+            martianScientistCounter += 1;
             experience -= martianScientistTotalCost;
             food -= 500;
             martianCount -= 1;
@@ -1149,12 +1539,15 @@ public class MarsController : MonoBehaviour
 
     public void BuyMartianSoldier()
     {
-        if (experience >= 250 && food >= 750 && martianCount >= 1)
+        if (experience >= martianSoldierTotalCost && food >= 500 && martianCount >= 1)
         {
             martianSoldierCount += 1;
-            experience -= 250;
-            food -= 750;
+            martianSoldierCounter += 1;
+            experience -= martianSoldierTotalCost;
+            food -= 500;
             martianCount -= 1;
+
+            UpdateMartianSoldier();
 
             SetMartianSoldierText();
             SetMartianCountText();
@@ -1165,12 +1558,15 @@ public class MarsController : MonoBehaviour
 
     public void BuyMartianPilot()
     {
-        if (experience >= 350 && food >= 750 && martianCount >= 1)
+        if (experience >= martianPilotTotalCost && food >= 500 && martianCount >= 1)
         {
-            martianSoldierCount += 1;
-            experience -= 250;
-            food -= 750;
+            martianPilotCount += 1;
+            martianPilotCounter += 1;
+            experience -= martianPilotTotalCost;
+            food -= 500;
             martianCount -= 1;
+
+            UpdateMartianPilot();
 
             SetMartianPilotText();
             SetMartianCountText();
@@ -1193,11 +1589,139 @@ public class MarsController : MonoBehaviour
             if(baitValue >= 80)
             {
                 martianCount += 1;
+                martianStatCounter += 1;
             }
 
             SetMartianCountText();
         }
     }
 
+    public void SendFoodShipment()
+    {
+        GameObject earthinterface = GameObject.Find("EarthInterface");
+        EarthController eif = earthinterface.GetComponent<EarthController>();
 
+        if (eif.money >= 200000)
+        {
+            food += 1000 * (1 + 0.05f * martianHospitalCount) * (0.8f + 0.2f * buildlingLevel[5]);
+        }
+    }
+
+    /// <summary>
+    /// Research and upgrade functions
+    /// </summary>
+
+    void ChangeSliderValue()
+    {
+        researchSlider.value = researchPoints;
+        researchPointsText.text = researchPoints + " / " + researchMaxPoints;
+
+        if (researchPoints == researchMaxPoints)
+        {
+            sliderFill.color = new Color(71f / 255f, 1f, 149f / 255f);
+        }
+    }
+
+    void NextUpgradeLevel()
+    {
+        researchPoints = 0;
+        researchMaxPoints = 2 * researchMaxPoints;
+        researchSlider.maxValue = researchMaxPoints;
+        ChangeSliderValue();
+        sliderFill.color = new Color(0f, 195f / 255f, 34f / 255f);
+    }
+
+    public void SetUpgradeText()
+    {
+        trainingCampUpgradeCountText.text = "Training Camp: Rank " + buildlingLevel[0];
+        farmUpgradeCountText.text = "Farm: Rank " + buildlingLevel[1];
+        mineUpgradeCountText.text = "Mine: Rank " + buildlingLevel[2];
+        powerStationUpgradeCountText.text = "Power Station: Rank " + buildlingLevel[3];
+        hospitalUpgradeCountText.text = "Hostpital: Rank " + buildlingLevel[4];
+        factoryUpgradeCountText.text = "Factory: Rank " + buildlingLevel[5];
+        satelliteUpgradeCountText.text = "Satellite: Rank " + buildlingLevel[6];
+    }
+
+    public void UpgradeTrainingCamp()
+    {
+        if (researchPoints == researchMaxPoints)
+        {
+            buildlingLevel[0] += 1;
+            UpdateExperiencePerSecond();
+            SetExperiencePerSecondText();
+            SetUpgradeText();
+            NextUpgradeLevel();
+        }
+    }
+
+    public void UpgradeFarm()
+    {
+        if (researchPoints == researchMaxPoints)
+        {
+            buildlingLevel[1] += 1;
+            UpdateFoodPerSecond();
+            SetUpgradeText();
+            NextUpgradeLevel();
+        }
+    }
+
+    public void UpgradeMine()
+    {
+        if (researchPoints == researchMaxPoints)
+        {
+            buildlingLevel[2] += 1;
+            UpdateRockPerSecond();
+            UpdateMetalPerSecond();
+            SetUpgradeText();
+            NextUpgradeLevel();
+        }
+    }
+
+    public void UpgradePowerStation()
+    {
+        if (researchPoints == researchMaxPoints)
+        {
+            buildlingLevel[3] += 1;
+            UpdateEnergyPerSecond();
+            SetUpgradeText();
+            NextUpgradeLevel();
+        }
+    }
+
+    public void UpgradeHospital()
+    {
+        if (researchPoints == researchMaxPoints)
+        {
+            buildlingLevel[4] += 1;
+            SetUpgradeText();
+            NextUpgradeLevel();
+        }
+    }
+
+    public void UpgradeFactory()
+    {
+        if (researchPoints == researchMaxPoints)
+        {
+            buildlingLevel[5] += 1;
+            UpdateExperiencePerSecond();
+            SetExperiencePerSecondText();
+            UpdateFoodPerSecond();
+            UpdateRockPerSecond();
+            UpdateMetalPerSecond();
+            UpdateEnergyPerSecond();
+            SetUpgradeText();
+            NextUpgradeLevel();
+        }
+    }
+
+    public void UpgradeSatellite()
+    {
+        if (researchPoints == researchMaxPoints)
+        {
+            buildlingLevel[6] += 1;
+            UpdateHuntTime();
+            SetUpgradeText();
+            NextUpgradeLevel();
+        }
+    }
 }

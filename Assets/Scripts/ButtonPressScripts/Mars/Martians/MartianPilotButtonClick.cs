@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MartianPilotButtonClick : MonoBehaviour, IPointerDownHandler
-{
+public class MartianPilotButtonClick : MonoBehaviour
+{ 
+    public GameObject marsInterface;
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        GameObject marsinterface = GameObject.Find("MarsInterface");
-        MarsController mif = marsinterface.GetComponent<MarsController>();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
         mif.BuyMartianPilot();
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TextBoxTextColourMartianHospital : MonoBehaviour
 {
     public Text textBoxText;
+    public GameObject marsInterface;
     private string colour1;
     private string colour2;
     private string colour3;
@@ -27,13 +28,12 @@ public class TextBoxTextColourMartianHospital : MonoBehaviour
 
     void SetText()
     {
-        textBoxText.text = "Requires: \n" + colour1 + "1 Taskmasters" + colourEnd + "\n" + colour2 + "5 Builders" + colourEnd + "\n" + colour3 + "10 Doctors" + colourEnd + "\n" + colour4 + "20 Peons" + colourEnd;
+        textBoxText.text = "Requires: \n" + colour1 + "1 Taskmasters" + colourEnd + "\n" + colour2 + "3 Builders" + colourEnd + "\n" + colour3 + "3 Doctors" + colourEnd + "\n" + colour4 + "5 Peons" + colourEnd;
     }
 
     void Update()
     {
-        GameObject marsinterface = GameObject.Find("MarsInterface");
-        MarsController mif = marsinterface.GetComponent<MarsController>();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
 
         SetText();
 
@@ -49,7 +49,7 @@ public class TextBoxTextColourMartianHospital : MonoBehaviour
             colour1 = red;
         }
 
-        if (mif.martianBuilderCount >= 5)
+        if (mif.martianBuilderCount >= 3)
         {
             if (colour2 == red)
             {
@@ -61,7 +61,7 @@ public class TextBoxTextColourMartianHospital : MonoBehaviour
             colour2 = red;
         }
 
-        if (mif.martianDoctorCount >= 10)
+        if (mif.martianDoctorCount >= 3)
         {
             if (colour3 == red)
             {
@@ -73,7 +73,7 @@ public class TextBoxTextColourMartianHospital : MonoBehaviour
             colour3 = red;
         }
 
-        if (mif.martianPeonCount >= 20)
+        if (mif.martianPeonCount >= 5)
         {
             if (colour4 == red)
             {

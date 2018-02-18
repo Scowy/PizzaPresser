@@ -21,10 +21,19 @@ public class EarthController : MonoBehaviour
     public GameObject spaceTravelPanel;
     public GameObject upgradesPanel;
 
+    public GameObject resourcesUpgradesInterfaceButton;
+    public GameObject questsInterfaceButton;
+    public GameObject spaceTravelInterfaceButton;
+    public GameObject statsInterfaceButton; 
+
     private string colour;
     private string colourEnd;
     private string red;
     private string green;
+
+    [Header("Interfaces")]
+    public GameObject earthInterface;
+    public GameObject marsInterface;
 
     [Header("Pizza and Money")]
     public float pizzas;
@@ -495,7 +504,7 @@ public class EarthController : MonoBehaviour
             mainMenu.SetActive(!mainMenu.activeSelf);
         }
 
-        // This controls the colour for all the items 
+        // This controls the colour for all the items cost 
 
         if (money >= workerTotalCost)
         {
@@ -821,29 +830,14 @@ public class EarthController : MonoBehaviour
     
     public void LoadEarth()
     {
-        Scene earth = SceneManager.GetSceneByName("Earth");
-
-        if (earth.isLoaded == true)
-        {
-            SceneManager.SetActiveScene(earth);
-        }
-        else
-        {
-            SceneManager.LoadScene("Earth", LoadSceneMode.Additive);
-        }
+        earthInterface.SetActive(false);
+        earthInterface.SetActive(true);
     }
 
     public void LoadMars()
     {
-        Scene mars = SceneManager.GetSceneByName("Mars");
-        if (mars.isLoaded == true)
-        {
-            SceneManager.SetActiveScene(mars);
-        }
-        else
-        {
-            SceneManager.LoadScene("Mars", LoadSceneMode.Additive);
-        }
+        marsInterface.SetActive(false);
+        marsInterface.SetActive(true);
     }
 
 
@@ -1199,16 +1193,11 @@ public class EarthController : MonoBehaviour
     }
 
     ///<summary>
-    /// Colour control of the interface panels
+    /// Control of the interface panels
     /// </summary>
 
     public void ResourcesInterfaceActivate()
     {
-        GameObject resourcesUpgradesInterfaceButton = GameObject.Find("ResourcesUpgradesInterfaceButton");
-        GameObject questsInterfaceButton = GameObject.Find("QuestsInterfaceButton");
-        GameObject spaceTravelInterfaceButton = GameObject.Find("SpaceTravelInterfaceButton");
-        GameObject statsInterfaceButton = GameObject.Find("StatsInterfaceButton");
-
         resourcesUpgradesInterfacePanel.SetActive(true);
         questsPanel.SetActive(false);
         spaceTravelPanel.SetActive(false);
@@ -1222,11 +1211,6 @@ public class EarthController : MonoBehaviour
 
     public void QuestsInterfaceActivate()
     {
-        GameObject resourcesUpgradesInterfaceButton = GameObject.Find("ResourcesUpgradesInterfaceButton");
-        GameObject questsInterfaceButton = GameObject.Find("QuestsInterfaceButton");
-        GameObject spaceTravelInterfaceButton = GameObject.Find("SpaceTravelInterfaceButton");
-        GameObject statsInterfaceButton = GameObject.Find("StatsInterfaceButton");
-
         resourcesUpgradesInterfacePanel.SetActive(false);
         questsPanel.SetActive(true);
         spaceTravelPanel.SetActive(false);
@@ -1240,11 +1224,6 @@ public class EarthController : MonoBehaviour
 
     public void SpaceTravelInterfaceActivate()
     {
-        GameObject resourcesUpgradesInterfaceButton = GameObject.Find("ResourcesUpgradesInterfaceButton");
-        GameObject questsInterfaceButton = GameObject.Find("QuestsInterfaceButton");
-        GameObject spaceTravelInterfaceButton = GameObject.Find("SpaceTravelInterfaceButton");
-        GameObject statsInterfaceButton = GameObject.Find("StatsInterfaceButton");
-
         resourcesUpgradesInterfacePanel.SetActive(false);
         questsPanel.SetActive(false);
         spaceTravelPanel.SetActive(true);
@@ -1258,11 +1237,6 @@ public class EarthController : MonoBehaviour
 
     public void StatsInterfaceActivate()
     {
-        GameObject resourcesUpgradesInterfaceButton = GameObject.Find("ResourcesUpgradesInterfaceButton");
-        GameObject questsInterfaceButton = GameObject.Find("QuestsInterfaceButton");
-        GameObject spaceTravelInterfaceButton = GameObject.Find("SpaceTravelInterfaceButton");
-        GameObject statsInterfaceButton = GameObject.Find("StatsInterfaceButton");
-
         resourcesUpgradesInterfacePanel.SetActive(false);
         questsPanel.SetActive(false);
         spaceTravelPanel.SetActive(false);
@@ -2319,7 +2293,7 @@ public class EarthController : MonoBehaviour
             GameObject marsinterface = GameObject.Find("MarsInterface");
             MarsController mif = marsinterface.GetComponent<MarsController>();
 
-            mif.food += 1000;
+            mif.food += 1000 * (1 + 0.05f * mif.martianHospitalCount) * (1 + 0.2f * mif.buildlingLevel[5]);
         }
     }
 

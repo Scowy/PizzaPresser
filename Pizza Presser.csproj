@@ -78,6 +78,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ButtonChangeScripts\SpaceshipConstructionButtonChangeScript.cs" />
+    <Compile Include="Assets\Scripts\ButtonChangeScripts\SpaceshipCrewChangeScript.cs" />
     <Compile Include="Assets\Scripts\ButtonPressScripts\Earth\PizzaMakers\PizzaCartButtonClick.cs" />
     <Compile Include="Assets\Scripts\ButtonPressScripts\Earth\PizzaMakers\PizzaConverterButtonClick.cs" />
     <Compile Include="Assets\Scripts\ButtonPressScripts\Earth\PizzaMakers\PizzaFactoryButtonClick.cs" />

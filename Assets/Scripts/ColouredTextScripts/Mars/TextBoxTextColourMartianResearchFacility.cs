@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class TextBoxTextColourMartianResearchFacility : MonoBehaviour
 {
     public Text textBoxText;
+    public GameObject marsInterface;
     private string colour1;
     private string colour2;
     private string colour3;
     private string colour4;
     private string colour5;
+    private string colour6;
     private string colourEnd;
     private string red;
     private string green;
@@ -22,6 +24,7 @@ public class TextBoxTextColourMartianResearchFacility : MonoBehaviour
         colour3 = "<color=red>";
         colour4 = "<color=red>";
         colour5 = "<color=red>";
+        colour6 = "<color=red>";
         red = "<color=red>";
         colourEnd = "</color>";
         green = "<color=green>";
@@ -29,17 +32,16 @@ public class TextBoxTextColourMartianResearchFacility : MonoBehaviour
 
     void SetText()
     {
-        textBoxText.text = "Requires: \n" + colour1 + "3 Taskmasters" + colourEnd + "\n" + colour2 + "10 Builders" + colourEnd + "\n" + colour3 + "20 Engineers" + colourEnd + "\n" + colour4 + "20 Scientists" + colourEnd + "\n" + colour5 + "50 Peons" + colourEnd;
+        textBoxText.text = "Requires: \n" + colour1 + "1 Taskmasters" + colourEnd + "\n" + colour2 + "10 Builders" + colourEnd + "\n" + colour3 + "10 Engineers" + colourEnd + "\n" + colour4 + "10 Scientists" + colourEnd + "\n" + colour5 + "10 Doctors" + colourEnd + "\n" + colour6 + "10 Peons" + colourEnd;
     }
 
     void Update()
     {
-        GameObject marsinterface = GameObject.Find("MarsInterface");
-        MarsController mif = marsinterface.GetComponent<MarsController>();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
 
         SetText();
 
-        if (mif.martianTaskMasterCount >= 3)
+        if (mif.martianTaskMasterCount >= 1)
         {
             if (colour1 == red)
             {
@@ -63,7 +65,7 @@ public class TextBoxTextColourMartianResearchFacility : MonoBehaviour
             colour2 = red;
         }
 
-        if (mif.martianEngineerCount >= 20)
+        if (mif.martianEngineerCount >= 10)
         {
             if (colour3 == red)
             {
@@ -75,7 +77,7 @@ public class TextBoxTextColourMartianResearchFacility : MonoBehaviour
             colour3 = red;
         }
 
-        if (mif.martianScientistCount >= 20)
+        if (mif.martianScientistCount >= 10)
         {
             if (colour4 == red)
             {
@@ -87,7 +89,7 @@ public class TextBoxTextColourMartianResearchFacility : MonoBehaviour
             colour4 = red;
         }
 
-        if (mif.martianPeonCount >= 50)
+        if (mif.martianDoctorCount >= 10)
         {
             if (colour5 == red)
             {
@@ -97,6 +99,18 @@ public class TextBoxTextColourMartianResearchFacility : MonoBehaviour
         else if (colour5 == green)
         {
             colour5 = red;
+        }
+
+        if (mif.martianPeonCount >= 10)
+        {
+            if (colour6 == red)
+            {
+                colour6 = green;
+            }
+        }
+        else if (colour6 == green)
+        {
+            colour6 = red;
         }
     }
 }

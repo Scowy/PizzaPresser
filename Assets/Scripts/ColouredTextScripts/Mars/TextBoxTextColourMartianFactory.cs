@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TextBoxTextColourMartianFactory : MonoBehaviour
 {
     public Text textBoxText;
+    public GameObject marsInterface;
     private string colour1;
     private string colour2;
     private string colour3;
@@ -27,17 +28,16 @@ public class TextBoxTextColourMartianFactory : MonoBehaviour
 
     void SetText()
     {
-        textBoxText.text = "Requires: \n" + colour1 + "3 Taskmasters" + colourEnd + "\n" + colour2 + "10 Builders" + colourEnd + "\n" + colour3 + "15 Engineers" + colourEnd + "\n" + colour4 + "30 Peons" + colourEnd;
+        textBoxText.text = "Requires: \n" + colour1 + "1 Taskmasters" + colourEnd + "\n" + colour2 + "3 Builders" + colourEnd + "\n" + colour3 + "3 Engineers" + colourEnd + "\n" + colour4 + "5 Peons" + colourEnd;
     }
 
     void Update()
     {
-        GameObject marsinterface = GameObject.Find("MarsInterface");
-        MarsController mif = marsinterface.GetComponent<MarsController>();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
 
         SetText();
 
-        if (mif.martianTaskMasterCount >= 3)
+        if (mif.martianTaskMasterCount >= 1)
         {
             if (colour1 == red)
             {
@@ -49,7 +49,7 @@ public class TextBoxTextColourMartianFactory : MonoBehaviour
             colour1 = red;
         }
 
-        if (mif.martianBuilderCount >= 10)
+        if (mif.martianBuilderCount >= 3)
         {
             if (colour2 == red)
             {
@@ -61,7 +61,7 @@ public class TextBoxTextColourMartianFactory : MonoBehaviour
             colour2 = red;
         }
 
-        if (mif.martianEngineerCount >= 15)
+        if (mif.martianEngineerCount >= 3)
         {
             if (colour3 == red)
             {
@@ -73,7 +73,7 @@ public class TextBoxTextColourMartianFactory : MonoBehaviour
             colour3 = red;
         }
 
-        if (mif.martianPeonCount >= 30)
+        if (mif.martianPeonCount >= 5)
         {
             if (colour4 == red)
             {

@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class TextBoxTextColourMartianMine : MonoBehaviour
 {
     public Text textBoxText;
+    public GameObject marsInterface;
     private string colour1;
     private string colour2;
-    private string colour3;
     private string colourEnd;
     private string red;
     private string green;
@@ -17,8 +17,6 @@ public class TextBoxTextColourMartianMine : MonoBehaviour
     {
         colour1 = "<color=red>";
         colour2 = "<color=red>";
-        colour3 = "<color=red>";
-
         red = "<color=red>";
         colourEnd = "</color>";
         green = "<color=green>";
@@ -26,13 +24,12 @@ public class TextBoxTextColourMartianMine : MonoBehaviour
 
     void SetText()
     {
-        textBoxText.text = "Requires: \n" + colour1 + "1 Taskmaster" + colourEnd + "\n" + colour2 + "5 Builders" + colourEnd + "\n" + colour3 + "10 Peons" + colourEnd;
+        textBoxText.text = "Requires: \n" + colour1 + "1 Taskmaster" + colourEnd + "\n" + colour2 + "5 Builders" + colourEnd;
     }
 
     void Update()
     {
-        GameObject marsinterface = GameObject.Find("MarsInterface");
-        MarsController mif = marsinterface.GetComponent<MarsController>();
+        MarsController mif = marsInterface.GetComponent<MarsController>();
 
         SetText();
 
@@ -58,18 +55,6 @@ public class TextBoxTextColourMartianMine : MonoBehaviour
         else if (colour2 == green)
         {
             colour2 = red;
-        }
-
-        if (mif.martianPeonCount >= 10)
-        {
-            if (colour3 == red)
-            {
-                colour3 = green;
-            }
-        }
-        else if (colour3 == green)
-        {
-            colour3 = red;
         }
     }
 }
