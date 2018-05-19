@@ -112,14 +112,15 @@ public class MarsController : MonoBehaviour
     public Text martianResearchFacilityMetalText;
     public Text martianResearchFacilityEnergyText;
     public GameObject martianResearchFacilityButton;
+
     public GameObject martianUpgradePanel;
     public Slider researchSlider;
     public Text researchPointsText;
     public Image sliderFill;
-    private int researchPoints;
-    private int researchMaxPoints;
+    public int researchPoints;
+    public int researchMaxPoints;
     private float researchUpdateTime;
-    public int[] buildlingLevel = { 1, 1, 1, 1, 1, 1, 1 }; 
+    public int[] buildingLevel = { 1, 1, 1, 1, 1, 1, 1 }; 
     public Button trainingCampUpgradeButton;
     public Text trainingCampUpgradeCountText;
     public Button farmUpgradeButton;
@@ -292,7 +293,7 @@ public class MarsController : MonoBehaviour
 
         if (huntCount <= 0)
         {
-            martiansFoundValue = Mathf.RoundToInt(Random.Range(1, 2) * martianHunterCount * (1 + 0.05f * martianSatelliteCount) * (0.8f + 0.2f * buildlingLevel[6]));
+            martiansFoundValue = Mathf.RoundToInt(Random.Range(1, 2) * martianHunterCount * (1 + 0.05f * martianSatelliteCount) * (0.8f + 0.2f * buildingLevel[6]));
             martianCount += martiansFoundValue;
             martianStatCounter += martiansFoundValue;
             huntCount = huntTime;
@@ -602,11 +603,11 @@ public class MarsController : MonoBehaviour
     {
         if (martianFactoryCount >= 1)
         {
-            experiencePerSecond = (1 * martianHunterCount + 3 * trainingCampCount) * (0.8f + 0.2f * (buildlingLevel[0])) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4])));
+            experiencePerSecond = (1 * martianHunterCount + 3 * trainingCampCount) * (0.8f + 0.2f * (buildingLevel[0])) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildingLevel[4])));
         }
         else
         {
-            experiencePerSecond = (1 * martianHunterCount + 3 * trainingCampCount) * (0.8f + 0.2f * (buildlingLevel[0]));
+            experiencePerSecond = (1 * martianHunterCount + 3 * trainingCampCount) * (0.8f + 0.2f * (buildingLevel[0]));
         }
     }
 
@@ -619,11 +620,11 @@ public class MarsController : MonoBehaviour
     {
         if (martianFactoryCount >= 1)
         {
-            foodPerSecond = (2 * martianFarmCount) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4]))) * (0.8f + 0.2f * (buildlingLevel[1]));
+            foodPerSecond = (2 * martianFarmCount) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildingLevel[4]))) * (0.8f + 0.2f * (buildingLevel[1]));
         }
         else
         {
-            foodPerSecond = (2 * martianFarmCount) * (0.8f + 0.2f * (buildlingLevel[1]));
+            foodPerSecond = (2 * martianFarmCount) * (0.8f + 0.2f * (buildingLevel[1]));
         }
     }
 
@@ -633,11 +634,11 @@ public class MarsController : MonoBehaviour
 
         if (martianFactoryCount >= 1)
         {
-            rockPerSecond = (2 * martianMineCount) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4]))) * (0.8f + 0.2f * (buildlingLevel[2]));
+            rockPerSecond = (2 * martianMineCount) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildingLevel[4]))) * (0.8f + 0.2f * (buildingLevel[2]));
         }
         else
         {
-            rockPerSecond = 2 * martianMineCount * (0.8f + 0.2f * (buildlingLevel[2]));
+            rockPerSecond = 2 * martianMineCount * (0.8f + 0.2f * (buildingLevel[2]));
         }
     }
 
@@ -645,11 +646,11 @@ public class MarsController : MonoBehaviour
     {
         if (martianFactoryCount >= 1)
         {
-            metalPerSecond = martianMineCount * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4]))) * (0.8f + + 0.2f * (buildlingLevel[2]));
+            metalPerSecond = martianMineCount * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildingLevel[4]))) * (0.8f + + 0.2f * (buildingLevel[2]));
         }
         else
         {
-            metalPerSecond = 1 * martianMineCount * (0.8f + 0.2f * (buildlingLevel[2]));
+            metalPerSecond = 1 * martianMineCount * (0.8f + 0.2f * (buildingLevel[2]));
         }
     }
 
@@ -657,17 +658,17 @@ public class MarsController : MonoBehaviour
     {
         if (martianFactoryCount >= 1)
         {
-            energyPerSecond = (2 * martianPowerPlantCount) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildlingLevel[4]))) * (0.8f + 0.2f * (buildlingLevel[2]));
+            energyPerSecond = (2 * martianPowerPlantCount) * Mathf.Pow(1.15f, martianFactoryCount * (0.8f + 0.2f * (buildingLevel[4]))) * (0.8f + 0.2f * (buildingLevel[2]));
         }
         else
         {
-            energyPerSecond = 2 * martianPowerPlantCount * (0.8f + 0.2f * (buildlingLevel[3]));
+            energyPerSecond = 2 * martianPowerPlantCount * (0.8f + 0.2f * (buildingLevel[3]));
         }
     }
 
     public void UpdateHuntTime()
     {
-        huntTime = 60f - 0.2f * martianSatelliteCount * (1 + 0.2f * buildlingLevel[6]);
+        huntTime = 60f - 0.2f * martianSatelliteCount * (1 + 0.2f * buildingLevel[6]);
     }
 
     public void UpdateTrainingCamp()
@@ -1603,7 +1604,7 @@ public class MarsController : MonoBehaviour
 
         if (eif.money >= 200000)
         {
-            food += 1000 * (1 + 0.05f * martianHospitalCount) * (0.8f + 0.2f * buildlingLevel[5]);
+            food += 1000 * (1 + 0.05f * martianHospitalCount) * (0.8f + 0.2f * buildingLevel[5]);
         }
     }
 
@@ -1611,7 +1612,7 @@ public class MarsController : MonoBehaviour
     /// Research and upgrade functions
     /// </summary>
 
-    void ChangeSliderValue()
+    public void ChangeSliderValue()
     {
         researchSlider.value = researchPoints;
         researchPointsText.text = researchPoints + " / " + researchMaxPoints;
@@ -1633,20 +1634,20 @@ public class MarsController : MonoBehaviour
 
     public void SetUpgradeText()
     {
-        trainingCampUpgradeCountText.text = "Training Camp: Rank " + buildlingLevel[0];
-        farmUpgradeCountText.text = "Farm: Rank " + buildlingLevel[1];
-        mineUpgradeCountText.text = "Mine: Rank " + buildlingLevel[2];
-        powerStationUpgradeCountText.text = "Power Station: Rank " + buildlingLevel[3];
-        hospitalUpgradeCountText.text = "Hostpital: Rank " + buildlingLevel[4];
-        factoryUpgradeCountText.text = "Factory: Rank " + buildlingLevel[5];
-        satelliteUpgradeCountText.text = "Satellite: Rank " + buildlingLevel[6];
+        trainingCampUpgradeCountText.text = "Training Camp: Rank " + buildingLevel[0];
+        farmUpgradeCountText.text = "Farm: Rank " + buildingLevel[1];
+        mineUpgradeCountText.text = "Mine: Rank " + buildingLevel[2];
+        powerStationUpgradeCountText.text = "Power Station: Rank " + buildingLevel[3];
+        hospitalUpgradeCountText.text = "Hostpital: Rank " + buildingLevel[4];
+        factoryUpgradeCountText.text = "Factory: Rank " + buildingLevel[5];
+        satelliteUpgradeCountText.text = "Satellite: Rank " + buildingLevel[6];
     }
 
     public void UpgradeTrainingCamp()
     {
         if (researchPoints == researchMaxPoints)
         {
-            buildlingLevel[0] += 1;
+            buildingLevel[0] += 1;
             UpdateExperiencePerSecond();
             SetExperiencePerSecondText();
             SetUpgradeText();
@@ -1658,7 +1659,7 @@ public class MarsController : MonoBehaviour
     {
         if (researchPoints == researchMaxPoints)
         {
-            buildlingLevel[1] += 1;
+            buildingLevel[1] += 1;
             UpdateFoodPerSecond();
             SetUpgradeText();
             NextUpgradeLevel();
@@ -1669,7 +1670,7 @@ public class MarsController : MonoBehaviour
     {
         if (researchPoints == researchMaxPoints)
         {
-            buildlingLevel[2] += 1;
+            buildingLevel[2] += 1;
             UpdateRockPerSecond();
             UpdateMetalPerSecond();
             SetUpgradeText();
@@ -1681,7 +1682,7 @@ public class MarsController : MonoBehaviour
     {
         if (researchPoints == researchMaxPoints)
         {
-            buildlingLevel[3] += 1;
+            buildingLevel[3] += 1;
             UpdateEnergyPerSecond();
             SetUpgradeText();
             NextUpgradeLevel();
@@ -1692,7 +1693,7 @@ public class MarsController : MonoBehaviour
     {
         if (researchPoints == researchMaxPoints)
         {
-            buildlingLevel[4] += 1;
+            buildingLevel[4] += 1;
             SetUpgradeText();
             NextUpgradeLevel();
         }
@@ -1702,7 +1703,7 @@ public class MarsController : MonoBehaviour
     {
         if (researchPoints == researchMaxPoints)
         {
-            buildlingLevel[5] += 1;
+            buildingLevel[5] += 1;
             UpdateExperiencePerSecond();
             SetExperiencePerSecondText();
             UpdateFoodPerSecond();
@@ -1718,7 +1719,7 @@ public class MarsController : MonoBehaviour
     {
         if (researchPoints == researchMaxPoints)
         {
-            buildlingLevel[6] += 1;
+            buildingLevel[6] += 1;
             UpdateHuntTime();
             SetUpgradeText();
             NextUpgradeLevel();

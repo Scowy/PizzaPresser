@@ -24,7 +24,7 @@ public class EarthController : MonoBehaviour
     public GameObject resourcesUpgradesInterfaceButton;
     public GameObject questsInterfaceButton;
     public GameObject spaceTravelInterfaceButton;
-    public GameObject statsInterfaceButton; 
+    public GameObject statsInterfaceButton;
 
     private string colour;
     private string colourEnd;
@@ -50,10 +50,16 @@ public class EarthController : MonoBehaviour
     public int rocketCount;
     public int crewCount;
     public int fuelCount;
+    public GameObject rocketButtonGO;
+    public GameObject crewButtonGO;
+    public GameObject fuelButtonGO;
     public Button rocketButton;
     public Button crewButton;
     public Button fuelButton;
     public GameObject marsTravelButton;
+
+    [Header("Space Travel Button values")]
+    public GameObject marsButton;
 
     [Header("Worker Variables")]
     public int workerCount;
@@ -2247,6 +2253,7 @@ public class EarthController : MonoBehaviour
             if (rocketCount == 1 && crewCount == 1 && fuelCount == 1)
             {
                 marsTravelButton.SetActive(true);
+                marsButton.SetActive(true);
             }
         }
     }
@@ -2263,6 +2270,7 @@ public class EarthController : MonoBehaviour
             if (rocketCount == 1 && crewCount == 1 && fuelCount == 1)
             {
                 marsTravelButton.SetActive(true);
+                marsButton.SetActive(true);
             }
         }
     }
@@ -2278,6 +2286,7 @@ public class EarthController : MonoBehaviour
             if (rocketCount == 1 && crewCount == 1 && fuelCount == 1)
             {
                 marsTravelButton.SetActive(true);
+                marsButton.SetActive(true);
             }
         }
     }
@@ -2293,7 +2302,7 @@ public class EarthController : MonoBehaviour
             GameObject marsinterface = GameObject.Find("MarsInterface");
             MarsController mif = marsinterface.GetComponent<MarsController>();
 
-            mif.food += 1000 * (1 + 0.05f * mif.martianHospitalCount) * (1 + 0.2f * mif.buildlingLevel[5]);
+            mif.food += 1000 * (1 + 0.05f * mif.martianHospitalCount) * (1 + 0.2f * mif.buildingLevel[5]);
         }
     }
 

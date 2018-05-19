@@ -177,7 +177,17 @@
     <Compile Include="Assets\Scripts\Misc\CustomButtonHitBox.cs" />
     <Compile Include="Assets\Scripts\Misc\EventSystemFix.cs" />
     <Compile Include="Assets\Scripts\Misc\HoverTextScript.cs" />
+    <Compile Include="Assets\Scripts\Misc\NewScrollRect.cs" />
     <Compile Include="Assets\Scripts\Misc\TextBoxControlScript.cs" />
+    <Compile Include="Assets\Scripts\SaturnTradeScripts\InventoryScript.cs" />
+    <Compile Include="Assets\Scripts\SaturnTradeScripts\ItemScript.cs" />
+    <Compile Include="Assets\Scripts\SaturnTradeScripts\MakeTradeScript.cs" />
+    <Compile Include="Assets\Scripts\SaturnTradeScripts\PlayerItemGenerationScript.cs" />
+    <Compile Include="Assets\Scripts\SaturnTradeScripts\SaturnDropDownScript.cs" />
+    <Compile Include="Assets\Scripts\SaturnTradeScripts\SaturnInventoryButtonScript.cs" />
+    <Compile Include="Assets\Scripts\SaturnTradeScripts\SaturnTradeButtonScript.cs" />
+    <Compile Include="Assets\Scripts\SaturnTradeScripts\TitanItemGenerationScript.cs" />
+    <Compile Include="Assets\Scripts\SaturnTradeScripts\TradeScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\OFL.txt" />

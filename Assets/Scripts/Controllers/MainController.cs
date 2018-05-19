@@ -9,6 +9,10 @@ public class MainController : MonoBehaviour
     [System.Serializable]
     class GameData
     {
+        /// <summary>
+        /// Earth values
+        /// </summary>
+
         public float pizzas;
         public float money;
         public float pizzasPerSecond;
@@ -66,6 +70,54 @@ public class MainController : MonoBehaviour
         public int superDrillStatCounter;
         public int spaceElevatorStatCounter;
         public int moonBaseStatCounter;
+
+        /// <summary>
+        /// Mars values
+        /// </summary>
+
+        public float experience;
+        public float food;
+        public float rock;
+        public float metal;
+        public float energy;
+
+        public int trainingCampCount;
+        public int martianFarmCount;
+        public int martianMineCount;
+        public int martianPowerPlantCount;
+        public int martianHospitalCount;
+        public int martianFactoryCount;
+        public int martianSatelliteCount;
+        public int martianResearchFacilityCount;
+
+        public int researchPoints;
+        public int researchMaxPoints;
+        public int[] buildingLevel;
+
+        public int martianCount;
+        public int martianHunterCount;
+        public int martianPeonCount;
+        public int martianBuilderCount;
+        public int martianTaskMasterCount;
+        public int martianEngineerCount;
+        public int martianDoctorCount;
+        public int martianScientistCount;
+        public int martianSoldierCount;
+        public int martianPilotCount;
+
+        public float experienceStatCounter;
+        public float foodStatCounter;
+
+        public int martianStatCounter;
+        public int martianHunterCounter;
+        public int martianPeonCounter;
+        public int martianBuilderCounter;
+        public int martianTaskMasterCounter;
+        public int martianEngineerCounter;
+        public int martianDoctorCounter;
+        public int martianScientistCounter;
+        public int martianSoldierCounter;
+        public int martianPilotCounter;
     }
 
     public void Save()
@@ -76,7 +128,14 @@ public class MainController : MonoBehaviour
         GameObject earthinterface = GameObject.Find("EarthInterface");
         EarthController eif = earthinterface.GetComponent<EarthController>();
 
+        GameObject marsinterface = GameObject.Find("MarsInterface");
+        MarsController mif = marsinterface.GetComponent<MarsController>();
+
         GameData data = new GameData();
+
+        /// <summary>
+        /// Earth values
+        /// </summary>
 
         data.pizzas = eif.pizzas;
         data.money = eif.money;
@@ -136,6 +195,54 @@ public class MainController : MonoBehaviour
         data.spaceElevatorStatCounter = eif.spaceElevatorStatCounter;
         data.moonBaseStatCounter = eif.moonBaseStatCounter;
 
+        /// <summary>
+        /// Mars values
+        /// </summary> 
+
+        data.experience = mif.experience;
+        data.food = mif.food;
+        data.rock = mif.rock;
+        data.metal = mif.metal;
+        data.energy = mif.energy;
+
+        data.trainingCampCount = mif.trainingCampCount;
+        data.martianFarmCount = mif.martianFarmCount;
+        data.martianMineCount = mif.martianMineCount;
+        data.martianPowerPlantCount = mif.martianPowerPlantCount;
+        data.martianHospitalCount = mif.martianHospitalCount;
+        data.martianFactoryCount = mif.martianFactoryCount;
+        data.martianSatelliteCount = mif.martianSatelliteCount;
+        data.martianResearchFacilityCount = mif.martianResearchFacilityCount;
+
+        data.researchPoints = mif.researchPoints;
+        data.researchMaxPoints = mif.researchMaxPoints;
+        data.buildingLevel = mif.buildingLevel;
+
+        data.martianCount = mif.martianCount;
+        data.martianHunterCount = mif.martianHunterCount;
+        data.martianPeonCount = mif.martianPeonCount;
+        data.martianBuilderCount = mif.martianBuilderCount;
+        data.martianTaskMasterCount = mif.martianTaskMasterCount;
+        data.martianEngineerCount = mif.martianEngineerCount;
+        data.martianDoctorCount = mif.martianDoctorCount;
+        data.martianScientistCount = mif.martianScientistCount;
+        data.martianSoldierCount = mif.martianSoldierCount;
+        data.martianPilotCount = mif.martianPilotCount;
+
+        data.experienceStatCounter = mif.experienceStatCounter;
+        data.foodStatCounter = mif.foodStatCounter;
+
+        data.martianStatCounter = mif.martianStatCounter;
+        data.martianHunterCounter = mif.martianHunterCounter;
+        data.martianPeonCounter = mif.martianPeonCounter;
+        data.martianBuilderCounter = mif.martianBuilderCounter;
+        data.martianTaskMasterCounter = mif.martianTaskMasterCounter;
+        data.martianEngineerCounter = mif.martianEngineerCounter;
+        data.martianDoctorCounter = mif.martianDoctorCounter;
+        data.martianScientistCounter = mif.martianScientistCounter;
+        data.martianSoldierCounter = mif.martianSoldierCounter;
+        data.martianPilotCounter = mif.martianPilotCounter;
+
         bf.Serialize(file, data);
         file.Close();
     }
@@ -151,6 +258,13 @@ public class MainController : MonoBehaviour
 
             GameObject earthinterface = GameObject.Find("EarthInterface");
             EarthController eif = earthinterface.GetComponent<EarthController>();
+
+            GameObject marsinterface = GameObject.Find("MarsInterface");
+            MarsController mif = marsinterface.GetComponent<MarsController>();
+
+            /// <summary>
+            /// Earth values
+            /// </summary>
 
             eif.pizzas = data.pizzas;
             eif.money = data.money;
@@ -298,6 +412,17 @@ public class MainController : MonoBehaviour
                     eif.convenientClickingThreeButton.SetActive(true);
                 }
             }
+            if (eif.pizzaMoonBaseCount >= 1)
+            {
+                eif.rocketButtonGO.SetActive(true);
+                eif.crewButtonGO.SetActive(true);
+                eif.fuelButtonGO.SetActive(true);
+            }
+            if (eif.fuelCount >= 1 && eif.crewCount >= 1 && eif.rocketCount >= 1)
+            {
+                eif.marsButton.SetActive(true);
+                eif.marsTravelButton.SetActive(true);
+            }
             if (eif.pizzaRestaurantCount >= 1 && eif.clickMultiplierCount == 0)
             {
                 eif.useTwoHandsButton.SetActive(true);
@@ -366,6 +491,135 @@ public class MainController : MonoBehaviour
             eif.SetSpaceElevatorText();
             eif.SetMoonBaseText();
             eif.SetAstronautText();
+
+            /// <summary>
+            /// Mars values
+            /// </summary> 
+
+            mif.experience = data.experience;
+            mif.food = data.food;
+            mif.rock = data.rock;
+            mif.metal = data.metal;
+            mif.energy = data.energy;
+
+            mif.trainingCampCount = data.trainingCampCount;
+            mif.martianFarmCount = data.martianFarmCount;
+            mif.martianMineCount = data.martianMineCount;
+            mif.martianPowerPlantCount = data.martianPowerPlantCount;
+            mif.martianHospitalCount = data.martianHospitalCount;
+            mif.martianFactoryCount = data.martianFactoryCount;
+            mif.martianSatelliteCount = data.martianSatelliteCount;
+            mif.martianResearchFacilityCount = data.martianResearchFacilityCount;
+
+            mif.researchPoints = data.researchPoints;
+            mif.researchMaxPoints = data.researchMaxPoints;
+            mif.buildingLevel = data.buildingLevel;
+
+            mif.martianCount = data.martianCount;
+            mif.martianHunterCount = data.martianHunterCount;
+            mif.martianPeonCount = data.martianPeonCount;
+            mif.martianBuilderCount = data.martianBuilderCount;
+            mif.martianTaskMasterCount = data.martianTaskMasterCount;
+            mif.martianEngineerCount = data.martianEngineerCount;
+            mif.martianDoctorCount = data.martianDoctorCount;
+            mif.martianScientistCount = data.martianScientistCount;
+            mif.martianSoldierCount = data.martianSoldierCount;
+            mif.martianPilotCount = data.martianPilotCount;
+
+            mif.experienceStatCounter = data.experienceStatCounter;
+            mif.foodStatCounter = data.foodStatCounter;
+
+            mif.martianStatCounter = data.martianStatCounter;
+            mif.martianHunterCounter = data.martianHunterCounter;
+            mif.martianPeonCounter = data.martianPeonCounter;
+            mif.martianBuilderCounter = data.martianBuilderCounter;
+            mif.martianTaskMasterCounter = data.martianTaskMasterCounter;
+            mif.martianEngineerCounter = data.martianEngineerCounter;
+            mif.martianDoctorCounter = data.martianDoctorCounter;
+            mif.martianScientistCounter = data.martianScientistCounter;
+            mif.martianSoldierCounter = data.martianSoldierCounter;
+            mif.martianPilotCounter = data.martianPilotCounter;
+
+            mif.UpdateExperiencePerSecond();
+            mif.UpdateHuntTime();
+            mif.UpdateTrainingCamp();
+            mif.UpdateMartianFarm();
+            mif.UpdateMartianMine();
+            mif.UpdateMartianFactory();
+            mif.UpdateMartianHospital();
+            mif.UpdateMartianPowerPlant();
+            mif.UpdateMartianSatellite();
+            mif.UpdateMartianResearchFacility();
+
+            mif.UpdateMartianHunter();
+            mif.UpdateMartianPeon();
+            mif.UpdateMartianBuilder();
+            mif.UpdateMartianTaskMaster();
+            mif.UpdateMartianEngineer();
+            mif.UpdateMartianDoctor();
+            mif.UpdateMartianScientist();
+            mif.UpdateMartianSoldier();
+            mif.UpdateMartianPilot();
+
+            if (mif.trainingCampCount >= 1)
+            {
+                mif.martianTaskMasterButton.SetActive(true);
+                mif.martianBuilderButton.SetActive(true);
+                mif.martianFarmButton.SetActive(true);
+                mif.martianMineButton.SetActive(true);
+            }
+            if (mif.trainingCampCount >= 1 && mif.martianFarmCount >= 1 && mif.martianMineCount >= 1)
+            {
+                mif.martianFactoryButton.SetActive(true);
+                mif.martianPowerPlantButton.SetActive(true);
+                mif.martianHospitalButton.SetActive(true);
+                mif.martianEngineerButton.SetActive(true);
+                mif.martianDoctorButton.SetActive(true);
+                mif.martianScientistButton.SetActive(true);
+            }
+            if (mif.martianFactoryCount >= 1 && mif.martianPowerPlantCount >= 1 && mif.martianHospitalCount >= 1)
+            {
+                mif.martianSatelliteButton.SetActive(true);
+                mif.martianResearchFacilityButton.SetActive(true);
+                mif.martianScientistButton.SetActive(true);
+            }
+            if (mif.martianSatelliteCount >= 1 && mif.martianResearchFacilityCount >= 1)
+            {
+                mif.martianSoldierButton.SetActive(true);
+                mif.martianPilotButton.SetActive(true);
+                mif.spaceshipConstructionButton.interactable = true;
+                mif.spaceshipCrewButton.interactable = true;
+            }
+            if (mif.martianResearchFacilityCount >= 1)
+            {
+                mif.martianUpgradePanel.SetActive(true);
+            }
+
+            mif.SetExperiencePerSecondText();
+            mif.SetMartianCountText();
+            mif.SetMartianHunterText();
+
+            mif.SetTrainingCampText();
+            mif.SetMartianFarmText();
+            mif.SetMartianMineText();
+            mif.SetMartianFactoryText();
+            mif.SetMartianHospitalText();
+            mif.SetMartianPowerPlantText();
+            mif.SetMartianSatelliteText();
+            mif.SetMartianResearchFactilityText();
+            mif.SetUpgradeText();
+
+            mif.SetMartianPeonText();
+            mif.SetMartianBuilderText();
+            mif.SetMartianTaskMasterText();
+            mif.SetMartianEngineerText();
+            mif.SetMartianDoctorText();
+            mif.SetMartianScientistText();
+            mif.SetMartianSoldierText();
+            mif.SetMartianPilotText();
+
+            mif.ChangeSliderValue();
+            mif.SetUpgradeText();
         }
     }
 
