@@ -178,6 +178,7 @@
     <Compile Include="Assets\Scripts\Misc\EventSystemFix.cs" />
     <Compile Include="Assets\Scripts\Misc\HoverTextScript.cs" />
     <Compile Include="Assets\Scripts\Misc\NewScrollRect.cs" />
+    <Compile Include="Assets\Scripts\Misc\PizzaClickEffectScript.cs" />
     <Compile Include="Assets\Scripts\Misc\TextBoxControlScript.cs" />
     <Compile Include="Assets\Scripts\SaturnTradeScripts\InventoryScript.cs" />
     <Compile Include="Assets\Scripts\SaturnTradeScripts\ItemScript.cs" />

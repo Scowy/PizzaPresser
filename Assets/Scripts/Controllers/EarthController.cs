@@ -45,6 +45,10 @@ public class EarthController : MonoBehaviour
     public Text moneyText;
     public Text pizzaText;
     public Text pizzasPerSecondText;
+    public GameObject pizzaImage;
+    public Transform pizzaButton;
+    public bool goRight = false;
+
 
     [Header("Quest Button values")]
     public int rocketCount;
@@ -809,6 +813,17 @@ public class EarthController : MonoBehaviour
     {
         pizzas += 1 * Mathf.Pow(2, clickMultiplierCount);
         pizzaStatCounter += 1;
+        CreatePizzaParticle();
+        
+        if (goRight == true)
+        {
+            goRight = false;
+        }
+        else
+        {
+            goRight = true;
+        }
+
         UpdateStats();
         SetPizzaText();
     }
@@ -820,6 +835,13 @@ public class EarthController : MonoBehaviour
         SetPizzaText();
         SetMoneyText();
     }
+
+    public void CreatePizzaParticle()
+    {
+        GameObject pizzaParticle = Instantiate(pizzaImage, new Vector3(185f + Random.Range(-150f, 150f), 770f + Random.Range(-150f, 150f), 0), new Quaternion(0, 0, 0, 0), pizzaButton);
+        Destroy(pizzaParticle, 1.5f);
+    }
+
 
     /// <summary>
     /// Toggle the scrollbar on/off command
