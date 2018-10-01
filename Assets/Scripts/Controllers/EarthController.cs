@@ -2328,6 +2328,4 @@ public class EarthController : MonoBehaviour
         }
     }
 
-
-
 }

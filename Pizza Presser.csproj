@@ -172,12 +172,16 @@
     <Compile Include="Assets\Scripts\Controllers\MainController.cs" />
     <Compile Include="Assets\Scripts\Controllers\MarsController.cs" />
     <Compile Include="Assets\Scripts\Controllers\SaturnController.cs" />
+    <Compile Include="Assets\Scripts\EventScripts\BreakDownButtonScript.cs" />
+    <Compile Include="Assets\Scripts\EventScripts\EarthEventScript.cs" />
     <Compile Include="Assets\Scripts\Misc\AnimatedText.cs" />
     <Compile Include="Assets\Scripts\Misc\AudioListenerFix.cs" />
     <Compile Include="Assets\Scripts\Misc\CustomButtonHitBox.cs" />
     <Compile Include="Assets\Scripts\Misc\EventSystemFix.cs" />
     <Compile Include="Assets\Scripts\Misc\HoverTextScript.cs" />
+    <Compile Include="Assets\Scripts\Misc\LeakedPizzaScript.cs" />
     <Compile Include="Assets\Scripts\Misc\NewScrollRect.cs" />
+    <Compile Include="Assets\Scripts\Misc\ObjectDestroyTrigger.cs" />
     <Compile Include="Assets\Scripts\Misc\PizzaClickEffectScript.cs" />
     <Compile Include="Assets\Scripts\Misc\TextBoxControlScript.cs" />
     <Compile Include="Assets\Scripts\SaturnTradeScripts\InventoryScript.cs" />
@@ -189,9 +193,18 @@
     <Compile Include="Assets\Scripts\SaturnTradeScripts\SaturnTradeButtonScript.cs" />
     <Compile Include="Assets\Scripts\SaturnTradeScripts\TitanItemGenerationScript.cs" />
     <Compile Include="Assets\Scripts\SaturnTradeScripts\TradeScript.cs" />
+    <Compile Include="Assets\UNETChatSystem\Scripts\ChatSystem\ChatIdentifier.cs" />
+    <Compile Include="Assets\UNETChatSystem\Scripts\ChatSystem\ChatSystem.cs" />
+    <Compile Include="Assets\UNETChatSystem\Scripts\ChatSystem\UIChatMessage.cs" />
+    <Compile Include="Assets\UNETChatSystem\Scripts\Sample\LanguageFilterToggle.cs" />
+    <Compile Include="Assets\UNETChatSystem\Scripts\Sample\PlayerController.cs" />
+    <Compile Include="Assets\UNETChatSystem\Scripts\Sample\TeamIdentifier.cs" />
+    <Compile Include="Assets\UNETChatSystem\Scripts\Sample\TeamSwapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\OFL.txt" />
+    <None Include="Assets\UNETChatSystem\changelog.txt" />
+    <None Include="Assets\UNETChatSystem\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
